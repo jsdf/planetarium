@@ -1,0 +1,49 @@
+{
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+	"settings":
+	{
+		"ClangFormat":
+		{
+			"format_on_save": true,
+			"languages":
+			[
+				"Arduino",
+				"C",
+				"C++",
+				"C++11",
+				"JavaScript",
+				"Objective-C",
+				"Objective-C++"
+			],
+			"style": "Chromium"
+		},
+
+
+    "SublimeLinter.linters.clang.args":  "-include Arduino.h",
+
+    "SublimeLinter.linters.clang.I":
+    [
+      "${folder}",
+      "${file_path}",
+      "/Users/jfriend/Library/Arduino15/packages/arduino/hardware/mbed/1.1.6/cores/arduino",
+      "/Users/jfriend/Documents/Arduino/libraries/Adafruit_NeoPixel",
+      "/Users/jfriend/Documents/Arduino/libraries/ArduinoBLE/src"
+    ], 
+
+    "SublimeLinter.linters.clang++.args":  "-include Arduino.h",
+
+		"SublimeLinter.linters.clang++.I":
+		[
+			"${folder}",
+			"${file_path}",
+      "/Users/jfriend/Library/Arduino15/packages/arduino/hardware/mbed/1.1.6/cores/arduino",
+      "/Users/jfriend/Documents/Arduino/libraries/Adafruit_NeoPixel",
+      "/Users/jfriend/Documents/Arduino/libraries/ArduinoBLE/src"
+		], 
+	}
+}

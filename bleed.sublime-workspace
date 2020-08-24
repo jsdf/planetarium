@@ -1,0 +1,3386 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"devi",
+				"device\tabc"
+			],
+			[
+				"connec",
+				"connectedDevices\tabc"
+			],
+			[
+				"shu",
+				"shuttingDown\tabc"
+			],
+			[
+				"dis",
+				"disconnect\t(nobleserial.js)"
+			],
+			[
+				"ma",
+				"manufacturer\t(nobleserial.js)"
+			],
+			[
+				"cah",
+				"characteristic\tabc"
+			],
+			[
+				"new",
+				"newObj.id\tabc"
+			],
+			[
+				"Obj",
+				"Obj_setPosition\t(stage00.c)"
+			],
+			[
+				"Obj_set",
+				"Obj_setRotation\tabc"
+			],
+			[
+				"Obj_ge",
+				"Obj_getRotation\tabc"
+			],
+			[
+				"code",
+				"codesegment.o\t(Makefile)"
+			],
+			[
+				"ed",
+				"ed64Printf\tabc"
+			],
+			[
+				"wor",
+				"worldObjects\tabc"
+			],
+			[
+				"fragmentSha",
+				"fragmentShaderSource\t(main.cpp)"
+			],
+			[
+				"frame",
+				"frameTime\tabc"
+			],
+			[
+				"fra",
+				"frameStartTime\tabc"
+			],
+			[
+				"seq",
+				"seqPlaying\tabc"
+			],
+			[
+				"Honk",
+				"Honk1Sound\tabc"
+			],
+			[
+				"Hon",
+				"Honk5Sound"
+			],
+			[
+				"NON",
+				"NoneSound\t(sound.h)"
+			],
+			[
+				"end",
+				"endif\t(Makefile)"
+			],
+			[
+				"got",
+				"gotFirstInterrupt\tabc"
+			],
+			[
+				"LOG",
+				"LOG_SAMPLING_PROFILE\tabc"
+			],
+			[
+				"sampl",
+				"sampling_profiler.h\t(stage00.c)"
+			],
+			[
+				"thread",
+				"threadToProfile\tabc"
+			],
+			[
+				"MAX",
+				"MAX_PROFILE_SIZE\tabc"
+			],
+			[
+				"error",
+				"errorDesc\tabc"
+			],
+			[
+				"print",
+				"printf\tprintf …"
+			],
+			[
+				"ed64",
+				"ed64Printf\t(constants.h)"
+			],
+			[
+				"RENDERER",
+				"RENDERER_PAINTERS_ALGORITHM\tabc"
+			],
+			[
+				"RENDER",
+				"RENDERER_FRUSTUM_CULLING\tabc"
+			],
+			[
+				"Vec3d_",
+				"Vec3d_set\t(vec3d.c)"
+			],
+			[
+				"stage",
+				"stage00\t(main.c)"
+			],
+			[
+				"debug",
+				"debugPrintf\tabc"
+			],
+			[
+				"OS",
+				"OSThread\tabc"
+			],
+			[
+				"ed64Prin",
+				"ed64PrintStackTrace\t(ed64io_fault.c)"
+			],
+			[
+				"Render",
+				"RendererSortDistance\tabc"
+			],
+			[
+				"ModelTyp",
+				"ModelTypeStrings\t(stage00.c)"
+			],
+			[
+				"visi",
+				"visibleObjectsCount\tabc"
+			],
+			[
+				"zW",
+				"zWriteObjectsCount\tabc"
+			],
+			[
+				"Game",
+				"GameObject\tabc"
+			],
+			[
+				"Renderer",
+				"Renderer_isZWriteGameObject\tabc"
+			],
+			[
+				"Gam",
+				"GameObject\tabc"
+			],
+			[
+				"intersec",
+				"intersect\t(collision.c)"
+			],
+			[
+				"High",
+				"HIGH_RESOLUTION_HALF_Y\tabc"
+			],
+			[
+				"snd",
+				"snd_no\tabc"
+			],
+			[
+				"SCR",
+				"SCREEN_HT\tabc"
+			],
+			[
+				"SCRE",
+				"SCREEN_Y\t(graphic.h)"
+			],
+			[
+				"SCREE",
+				"SCREEN_X\t(graphic.h)"
+			],
+			[
+				"SC",
+				"SCREEN_X\t(graphic.h)"
+			],
+			[
+				"SCREN",
+				"SCREEN_WD\tabc"
+			],
+			[
+				"visib",
+				"visibleObjDistance\tabc"
+			],
+			[
+				"view",
+				"viewport\tabc"
+			],
+			[
+				"proj",
+				"projection\tabc"
+			],
+			[
+				"ti",
+				"tick\t(player.c)"
+			],
+			[
+				"NoneS",
+				"NoneSprite\t(animation.c)"
+			],
+			[
+				"Mtx",
+				"MtxF\tabc"
+			],
+			[
+				"Mt",
+				"MtxF\tabc"
+			],
+			[
+				"sprite",
+				"spriteAttachment\t(animation.h)"
+			],
+			[
+				"spr",
+				"spriteAttachment\t(animation.h)"
+			],
+			[
+				"spri",
+				"spriteType\tabc"
+			],
+			[
+				"Spr",
+				"Sprite_honk1spr\t(honk1spr.h)"
+			],
+			[
+				"n64",
+				"n64audio.c\tabc"
+			],
+			[
+				"inc",
+				"inc\t#include \"…\""
+			],
+			[
+				"E",
+				"EXTERN_SEGMENT\tabc"
+			],
+			[
+				"objTrans",
+				"objTransforms\t(graphic.h)"
+			],
+			[
+				"Garden",
+				"GardenerCharacterModel\t(game.c)"
+			],
+			[
+				"debu",
+				"debugPrintf\tabc"
+			],
+			[
+				"HIGH",
+				"HIGH_RESOLUTION_OPTS\t(renderer.c)"
+			],
+			[
+				"SCREEN",
+				"SCREEN_WD\tabc"
+			],
+			[
+				"Chara",
+				"GardenerCharacterModel"
+			],
+			[
+				"ob",
+				"obj\tabc"
+			],
+			[
+				"Z",
+				"ZBUFFER_ADDR\t(graphic.h)"
+			],
+			[
+				"centr",
+				"centroidOffset\tabc"
+			],
+			[
+				"selec",
+				"selectObjectAtScreenPos\tabc"
+			],
+			[
+				"draw",
+				"drawMarker\tabc"
+			],
+			[
+				"las",
+				"lastProjection\tabc"
+			],
+			[
+				"enable",
+				"enableLighting\tabc"
+			],
+			[
+				"drawY",
+				"drawRaycastLine\tabc"
+			],
+			[
+				"Game_ge",
+				"Game_getObjRadius\t(game.c)"
+			],
+			[
+				"glPop",
+				"glPopMatrix\tabc"
+			],
+			[
+				"Vec",
+				"Vec3d\tabc"
+			],
+			[
+				"res",
+				"result\tabc"
+			],
+			[
+				"clo",
+				"closestObjHit\tabc"
+			],
+			[
+				"close",
+				"closestObjHitDist\tabc"
+			],
+			[
+				"Game_get",
+				"Game_getIntersectingObjectID\t(glgoose.cpp)"
+			],
+			[
+				"exi",
+				"exitCode\tabc"
+			],
+			[
+				"bone",
+				"boneIndex\tabc"
+			],
+			[
+				"bon",
+				"boneIdx\tabc"
+			],
+			[
+				"modeltype",
+				"ModelTypeStrings"
+			],
+			[
+				"flor",
+				"floorHeight\tabc"
+			],
+			[
+				"floor",
+				"floorHeight\tabc"
+			],
+			[
+				"Model",
+				"ModelTypeStrings\tabc"
+			],
+			[
+				"char",
+				"characterrig\t(characterrig.h)"
+			],
+			[
+				"character_anim",
+				"character_anim_data\t(character_anim.h)"
+			],
+			[
+				"Anim",
+				"AnimationFrame\tabc"
+			],
+			[
+				"MAXME",
+				"MAX_ANIM_MESH_PARTS\t(animation.h)"
+			],
+			[
+				"chrac",
+				"characterhand_r_characterhand_rmesh\t(character_anim.h)"
+			],
+			[
+				"mesh",
+				"meshPart\tabc"
+			],
+			[
+				"anims",
+				"animStateInt\tabc"
+			],
+			[
+				"blen",
+				"blender_bone_name\tabc"
+			],
+			[
+				"GOOSE",
+				"GOOSE_WALK_SPEED_RATIO\tabc"
+			],
+			[
+				"Character_ang",
+				"Character_topDownAngleMagToObj\tabc"
+			],
+			[
+				"pos",
+				"position\tabc"
+			],
+			[
+				"angle",
+				"angleToPlayer\tabc"
+			],
+			[
+				"glp",
+				"glPopAttrib\tabc"
+			],
+			[
+				"Bu",
+				"BushModel\tabc"
+			],
+			[
+				"_",
+				"__N64__\tabc"
+			],
+			[
+				"phs",
+				"physBody\t(player.c)"
+			],
+			[
+				"USE",
+				"USE_PHYSICS_MOVEMENT\t(player.c)"
+			],
+			[
+				"Phys",
+				"PhysBody\tabc"
+			],
+			[
+				"pla",
+				"playerMovementScaled\tabc"
+			],
+			[
+				"phy",
+				"physBody\tabc"
+			],
+			[
+				"items",
+				"itemsCount\tabc"
+			],
+			[
+				"non",
+				"nonIntegralVelocity\tabc"
+			],
+			[
+				"ph",
+				"physBody\tabc"
+			],
+			[
+				"phys",
+				"physicsBodies\tabc"
+			],
+			[
+				"NUM_",
+				"NUM_ITEMS\tabc"
+			],
+			[
+				"CHARAtr",
+				"NUM_CHARACTERS"
+			],
+			[
+				"model",
+				"modelType\tabc"
+			],
+			[
+				"GAme",
+				"GameObject\tabc"
+			],
+			[
+				"Goose",
+				"GooseModel\tabc"
+			],
+			[
+				"mode",
+				"modelTypesProperties\tabc"
+			],
+			[
+				"zoom",
+				"zoomIn\t(input.c)"
+			],
+			[
+				"Mode",
+				"ModelType\t(glgoose.cpp)"
+			],
+			[
+				"rot",
+				"rotation\tabc"
+			],
+			[
+				"Eul",
+				"EulerDegrees_origin\t(rotation.h)"
+			],
+			[
+				"Euler",
+				"EulerDegrees\tabc"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "central.js",
+			"settings":
+			{
+				"buffer_size": 2131,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "bleednotify.js",
+			"settings":
+			{
+				"buffer_size": 5135,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "blunocentral.js",
+			"settings":
+			{
+				"buffer_size": 3753,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "var noble = require('@abandonware/noble');"
+			}
+		},
+		{
+			"file": "serialport.js",
+			"settings":
+			{
+				"buffer_size": 651,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "const SerialPort = require('serialport')"
+			}
+		},
+		{
+			"file": "bleed.sublime-project",
+			"settings":
+			{
+				"buffer_size": 1038,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "btserial.js",
+			"settings":
+			{
+				"buffer_size": 1244,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "nobleserial.js",
+			"settings":
+			{
+				"buffer_size": 5160,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "'use strict';"
+			}
+		},
+		{
+			"file": "peripheral.js",
+			"settings":
+			{
+				"buffer_size": 2046,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Emu Build",
+					""
+				],
+				[
+					"GL Build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				],
+				[
+					"Packages/SublimeREPL/sublimerepl_build_system_hack.sublime-build",
+					""
+				]
+			],
+			[
+				"GL Build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 271.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"lint thi",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"lin",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"sync++",
+				"Set Syntax: C++"
+			],
+			[
+				"synar",
+				"Set Syntax: Arduino"
+			],
+			[
+				"brows",
+				"Preferences: Browse Packages"
+			],
+			[
+				"foromat",
+				"Clang Format: Format Selection"
+			],
+			[
+				"edit",
+				"Project: Edit Project"
+			],
+			[
+				"project",
+				"Project: Add Folder"
+			],
+			[
+				"reve",
+				"File: Reveal"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"path",
+				"File: Copy Path"
+			],
+			[
+				"the",
+				"Themr: List themes"
+			],
+			[
+				"sch",
+				"Schemr: List all schemes"
+			],
+			[
+				"schem",
+				"Schemr: List all schemes"
+			],
+			[
+				"them",
+				"Themr: List themes"
+			],
+			[
+				"ren",
+				"File: Rename"
+			],
+			[
+				"projec",
+				"Project: Save As"
+			],
+			[
+				"clan",
+				"Clang Format: Format Selection"
+			],
+			[
+				"clang",
+				"Clang Format: Format Selection"
+			],
+			[
+				"del",
+				"File: Delete"
+			],
+			[
+				"Move",
+				"File: Move"
+			],
+			[
+				"de",
+				"File: Delete"
+			],
+			[
+				"move",
+				"File: Move"
+			],
+			[
+				"re",
+				"File: Rename"
+			],
+			[
+				"rena",
+				"Rename File"
+			],
+			[
+				"make",
+				"Build With: Make"
+			],
+			[
+				"bash",
+				"Set Syntax: Bourne Again Shell (bash)"
+			],
+			[
+				"makefi",
+				"Set Syntax: Makefile"
+			],
+			[
+				"filename",
+				"File: Copy Name"
+			],
+			[
+				"uniq",
+				"Permute Lines: Unique"
+			],
+			[
+				"github",
+				"GitHubinator"
+			],
+			[
+				"gih",
+				"GitHubinator"
+			],
+			[
+				"clos",
+				"File: Close All"
+			],
+			[
+				"save",
+				"File: Save All"
+			],
+			[
+				"came",
+				"Convert Case: camelCase"
+			],
+			[
+				"jaas",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"babel",
+				"Babel Transform"
+			],
+			[
+				"enabl",
+				"Package Control: Enable Package"
+			],
+			[
+				"pack",
+				"Package Control: List Packages"
+			],
+			[
+				"upper",
+				"Convert Case: Upper Case"
+			],
+			[
+				"setting",
+				"Preferences: Settings"
+			],
+			[
+				"c++",
+				"Set Syntax: C++"
+			],
+			[
+				"low",
+				"Convert Case: Lower Case"
+			],
+			[
+				"prefere",
+				"Preferences: Settings"
+			],
+			[
+				"form",
+				"Sublack: Format file"
+			],
+			[
+				"packin",
+				"Package Control: Install Package"
+			],
+			[
+				"sort",
+				"Sort Lines"
+			],
+			[
+				"err",
+				"SublimeLinter: Goto Error"
+			],
+			[
+				"linter",
+				"SublimeLinter: Goto Error"
+			],
+			[
+				"jav",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"jasv",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"got",
+				"SublimeLinter: Goto Error"
+			],
+			[
+				"Dele",
+				"File: Delete"
+			],
+			[
+				"wrap",
+				"Word Wrap: Toggle"
+			],
+			[
+				"upp",
+				"Convert Case: Upper Case"
+			],
+			[
+				"wra",
+				"Word Wrap: Toggle"
+			],
+			[
+				"sor",
+				"Sort Lines"
+			],
+			[
+				"s",
+				"Sort Lines"
+			],
+			[
+				"uni",
+				"Permute Lines: Unique"
+			],
+			[
+				"disable",
+				"Package Control: Disable Package"
+			],
+			[
+				"renam",
+				"Rename File"
+			],
+			[
+				"linterset",
+				"Preferences: SublimeLinter Settings"
+			],
+			[
+				"debug",
+				"BracketHighlighter: Enable Debug Mode"
+			],
+			[
+				"brak",
+				"BracketHighlighter: Toggle Global Enable"
+			],
+			[
+				"brakethigh",
+				"BracketHighlighter: Toggle Global Enable"
+			],
+			[
+				"match",
+				"BracketHighlighter: Match Brackets (ignore threshold)"
+			],
+			[
+				"cam",
+				"Convert Case: camelCase"
+			],
+			[
+				"scame",
+				"Convert Case: camelCase"
+			],
+			[
+				"error",
+				"SublimeLinter: Goto Error"
+			],
+			[
+				"dele",
+				"File: Delete"
+			],
+			[
+				"pyth",
+				"Set Syntax: Python"
+			],
+			[
+				"bui",
+				"Build With: Emu Build"
+			],
+			[
+				"build",
+				"Build With: Emu Build"
+			],
+			[
+				"javc",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"synbash",
+				"Set Syntax: Bourne Again Shell (bash)"
+			],
+			[
+				"sync",
+				"Set Syntax: C"
+			],
+			[
+				"preferlint",
+				"Preferences: SublimeLinter Settings"
+			],
+			[
+				"pro",
+				"Project: Edit"
+			],
+			[
+				"preferelint",
+				"Preferences: SublimeLinter Settings"
+			],
+			[
+				"prefer",
+				"Preferences: Settings"
+			],
+			[
+				"Synct",
+				"Set Syntax: C++"
+			],
+			[
+				"syn++",
+				"Set Syntax: C++"
+			],
+			[
+				"goto",
+				"SublimeLinter: Goto Error"
+			],
+			[
+				"dle",
+				"File: Delete"
+			],
+			[
+				"forma",
+				"Clang Format: Select Style"
+			],
+			[
+				"brow",
+				"Preferences: Browse Packages"
+			],
+			[
+				"format",
+				"Clang Format: Select Style"
+			],
+			[
+				"disabl",
+				"Package Control: Disable Package"
+			],
+			[
+				"buildview",
+				"Disable/Enable buildview for this window"
+			],
+			[
+				"buildgl",
+				"Build With: GL Build"
+			],
+			[
+				"gl bu",
+				"Build With: GL Build"
+			],
+			[
+				"rean",
+				"File: Rename"
+			],
+			[
+				"sublimelint",
+				"Preferences: SublimeLinter Settings"
+			],
+			[
+				"sublimelin",
+				"Preferences: SublimeLinter Settings"
+			],
+			[
+				"syntaxc",
+				"Set Syntax: C"
+			],
+			[
+				"perma",
+				"GitHubinator Permalink"
+			],
+			[
+				"githu",
+				"GitHubinator"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"pasca",
+				"Convert Case: PascalCase"
+			],
+			[
+				"cap",
+				"Convert Case: PascalCase"
+			],
+			[
+				"theme",
+				"Themr: List themes"
+			],
+			[
+				"scheme",
+				"Schemr: List all schemes"
+			],
+			[
+				"sche",
+				"Schemr: List all schemes"
+			],
+			[
+				"sett",
+				"Preferences: Settings"
+			],
+			[
+				"prefe",
+				"Preferences: Settings"
+			],
+			[
+				"dup",
+				"File: Duplicate"
+			],
+			[
+				"prett",
+				"Preferences: JsPrettier Settings - Default"
+			],
+			[
+				"pret",
+				"Preferences: JsPrettier Settings - User"
+			],
+			[
+				"prettier",
+				"JsPrettier: Format Code"
+			],
+			[
+				"pre",
+				"Preferences: JsPrettier Settings - User"
+			],
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
+			[
+				"flow",
+				"GitHub Flavored Markdown: Preview"
+			],
+			[
+				"enable",
+				"Package Control: Enable Package"
+			],
+			[
+				"pl",
+				"Package Control: List Packages"
+			],
+			[
+				"lintthis",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"lint",
+				"File: New View into File"
+			],
+			[
+				"lintersett",
+				"Preferences: SublimeLinter Settings"
+			],
+			[
+				"linters",
+				"Preferences: SublimeLinter Settings"
+			],
+			[
+				"enablepack",
+				"Package Control: Enable Package"
+			],
+			[
+				"list linter",
+				"SublimeLinter: Reload SublimeLinter and its Plugins"
+			],
+			[
+				"sublimelintesett",
+				"Preferences: SublimeLinter Settings"
+			],
+			[
+				"sublimeLinter sett",
+				"Preferences: SublimeLinter Settings"
+			],
+			[
+				"erro",
+				"SublimeLinter: Goto Error"
+			],
+			[
+				"go",
+				"SublimeLinter: Goto Error"
+			],
+			[
+				"unfo",
+				"Code Folding: Unfold All"
+			],
+			[
+				"unfor",
+				"SublimeREPL: SBT for opened folder"
+			],
+			[
+				"sublimlintset",
+				"Preferences: SublimeLinter Settings"
+			],
+			[
+				"pretter",
+				"Preferences: JsPrettier Settings - User"
+			]
+		],
+		"width": 496.0
+	},
+	"console":
+	{
+		"height": 340.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib2,os; pf='Package Control.sublime-package'; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read()); print('Please restart Sublime Text to finish installation')"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/jfriend/code/bleed"
+	],
+	"file_history":
+	[
+		"/Users/jfriend/Documents/Arduino/ble_led/ble_led.ino",
+		"/Users/jfriend/code/bleed/bleed.sublime-project",
+		"/Users/jfriend/code/n64-duktape/node_modules/ed64logjs/dbgif.js",
+		"/Users/jfriend/code/n64-duktape/graphic.c",
+		"/Users/jfriend/code/n64-duktape/ed64io_fault.c",
+		"/Users/jfriend/code/n64-duktape/ed64io_watchdog.c",
+		"/Users/jfriend/code/n64-duktape/spec",
+		"/Users/jfriend/code/de_rezz/openglsdl.cpp",
+		"/Users/jfriend/Library/Application Support/Sublime Text 3/Packages/Clang Format/clang_format.sublime-settings",
+		"/Users/jfriend/Library/Application Support/Sublime Text 3/Packages/User/clang_format.sublime-settings",
+		"/Users/jfriend/.wine/drive_c/goose64/glgoose.cpp",
+		"/Users/jfriend/Downloads/unsorted-nocvs/depot/rf/sw/n64os20l/libultra/monegi/libc/xstdio.h",
+		"/Users/jfriend/Downloads/unsorted-nocvs/depot/rf/sw/n64os20l/lib/error/error.fmt",
+		"/Users/jfriend/Downloads/unsorted-nocvs/depot/rf/sw/n64os20l/libultra/monegi/libc/syncprintf.c",
+		"/Users/jfriend/Downloads/unsorted-nocvs/depot/rf/sw/n64os20l/libultra/nintendo/error/commonerror.c",
+		"/Users/jfriend/.wine/drive_c/ultra/usr/include/PR/libaudio.h",
+		"/Users/jfriend/.wine/drive_c/goose64/sfx.h",
+		"/Users/jfriend/.wine/drive_c/goose64/game.c",
+		"/Users/jfriend/.wine/drive_c/goose64/renderer.c",
+		"/Users/jfriend/.wine/drive_c/goose64/constants.h",
+		"/Users/jfriend/.wine/drive_c/goose64/renderer.h",
+		"/Users/jfriend/.wine/drive_c/goose64/disassemble_modern.sh",
+		"/Users/jfriend/.wine/drive_c/goose64/goose.out.dasm",
+		"/Users/jfriend/.wine/drive_c/goose64/codesegment.o.dasm",
+		"/Users/jfriend/.wine/drive_c/goose64/specminimal",
+		"/Users/jfriend/.wine/drive_c/goose64/.depend",
+		"/Users/jfriend/.wine/drive_c/goose64/localdefs.makefile",
+		"/Users/jfriend/.wine/drive_c/goose64/stage00.c",
+		"/Users/jfriend/.wine/drive_c/goose64/deploy.sh",
+		"/Users/jfriend/.wine/drive_c/goose64/disassemble.sh",
+		"/Users/jfriend/.wine/drive_c/goose64/Makefile",
+		"/Users/jfriend/.wine/drive_c/goose64/ART.md",
+		"/Users/jfriend/.wine/drive_c/goose64/mk000001.bat",
+		"/Users/jfriend/.wine/drive_c/goose64/disassembly.txt",
+		"/Users/jfriend/.wine/drive_c/goose64/main_disasm.txt",
+		"/Users/jfriend/.wine/drive_c/goose64/run_mupen.sh",
+		"/Users/jfriend/.wine/drive_c/goose64/objdump.sh",
+		"/Users/jfriend/.wine/drive_c/goose64/objdump.bat",
+		"/Users/jfriend/.wine/drive_c/goose64/mem_heap.c",
+		"/Users/jfriend/.wine/drive_c/goose64/mem_heap.h",
+		"/Users/jfriend/.wine/drive_c/goose64/spec",
+		"/Users/jfriend/.wine/drive_c/goose64/GNUmakefile",
+		"/Users/jfriend/.wine/drive_c/goose64/compile.bat",
+		"/Users/jfriend/.wine/drive_c/goose64/codesegment_disasm.txt",
+		"/Users/jfriend/.wine/drive_c/goose64/sampling_profiler.c",
+		"/Users/jfriend/code/m64p/build.sh",
+		"/Users/jfriend/.wine/drive_c/goose64/trace.h",
+		"/Users/jfriend/.wine/drive_c/goose64/trace.c",
+		"/Users/jfriend/.wine/drive_c/goose64/sampling_profiler.h",
+		"/Users/jfriend/.wine/drive_c/goose64/ed64io_fault.c",
+		"/Users/jfriend/.wine/drive_c/goose64/goose64.sublime-project",
+		"/Users/jfriend/.wine/drive_c/goose64/codesegment_syms.txt",
+		"/Users/jfriend/.wine/drive_c/goose64/build.sh",
+		"/Users/jfriend/code/n64sdkmod/packages/root-compatibility-enviroment/etc/profile.d/n64-root.sh",
+		"/Users/jfriend/.wine/drive_c/goose64/ed64io_usb.h",
+		"/Users/jfriend/.wine/drive_c/goose64/ed64io_usb.c",
+		"/Users/jfriend/.wine/drive_c/goose64/ed64io_os_error.c",
+		"/Users/jfriend/.wine/drive_c/goose64/ed64io_os_error.h",
+		"/Users/jfriend/.wine/drive_c/goose64/ed64io_fault.h",
+		"/Users/jfriend/.wine/drive_c/moderngccdemo/libgultra_d_disasm.txt",
+		"/Users/jfriend/.wine/drive_c/moderngccdemo/libgultra_disasm.txt",
+		"/Users/jfriend/.wine/drive_c/goose64/graphic.c",
+		"/Users/jfriend/.wine/drive_c/goose64/graphic.h",
+		"/Users/jfriend/.wine/drive_c/goose64/main.c",
+		"/Users/jfriend/.wine/drive_c/goose64/blender.sh",
+		"/Users/jfriend/.wine/drive_c/goose64/export_animation.py",
+		"/Users/jfriend/.wine/drive_c/goose64/export_character_model.py",
+		"/Users/jfriend/.wine/drive_c/goose64/garden.blend",
+		"/Users/jfriend/.wine/drive_c/goose64/garden.blend1",
+		"/Users/jfriend/.wine/drive_c/goose64/glgoose",
+		"/Users/jfriend/.wine/drive_c/goose64/university_bldg.h",
+		"/Users/jfriend/.wine/drive_c/goose64/university_floor.h",
+		"/Users/jfriend/.wine/drive_c/goose64/university_map.h",
+		"/Users/jfriend/.wine/drive_c/goose64/university_map_collision.c",
+		"/Users/jfriend/.wine/drive_c/goose64/university_map_collision.h",
+		"/Users/jfriend/.wine/drive_c/goose64/university_map_graph.c",
+		"/Users/jfriend/.wine/drive_c/goose64/university_map_graph.h",
+		"/Users/jfriend/.wine/drive_c/goose64/goose64.out",
+		"/Users/jfriend/.wine/drive_c/goose64/goose64glut/goose64glut.xcodeproj/project.xcworkspace/xcuserdata/jfriend.xcuserdatad/UserInterfaceState.xcuserstate",
+		"/Users/jfriend/.wine/drive_c/goose64/models/Person.blend",
+		"/Users/jfriend/.wine/drive_c/goose64/models/Person.blend1",
+		"/Users/jfriend/.wine/drive_c/goose64/models/UniBldg.blend",
+		"/Users/jfriend/.wine/drive_c/goose64/models/UniBldg.blend1",
+		"/Users/jfriend/.wine/drive_c/goose64/models/UniFloor.blend",
+		"/Users/jfriend/.wine/drive_c/goose64/buildcache.json",
+		"/Users/jfriend/.wine/drive_c/goose64/garden_bldg.obj",
+		"/Users/jfriend/.wine/drive_c/goose64/garden_floor.obj",
+		"/Users/jfriend/.wine/drive_c/goose64/ground.mtl",
+		"/Users/jfriend/.wine/drive_c/goose64/ground.obj",
+		"/Users/jfriend/.wine/drive_c/goose64/lilypad.mtl",
+		"/Users/jfriend/.wine/drive_c/goose64/lilypad.obj",
+		"/Users/jfriend/.wine/drive_c/goose64/reed.mtl",
+		"/Users/jfriend/.wine/drive_c/goose64/reed.obj",
+		"/Users/jfriend/.wine/drive_c/goose64/rocks.mtl",
+		"/Users/jfriend/.wine/drive_c/goose64/rocks.obj",
+		"/Users/jfriend/.wine/drive_c/goose64/water.mtl",
+		"/Users/jfriend/.wine/drive_c/goose64/water.obj",
+		"/Users/jfriend/.wine/drive_c/goose64/watergrass.mtl",
+		"/Users/jfriend/.wine/drive_c/goose64/watergrass.obj",
+		"/Users/jfriend/.wine/drive_c/goose64/goose64glut/goose64glut.xcodeproj/project.pbxproj",
+		"/Users/jfriend/.wine/drive_c/goose64/nodegraph/nodegraph.cpp",
+		"/Users/jfriend/.wine/drive_c/goose64/character.c",
+		"/Users/jfriend/.wine/drive_c/goose64/export_collision_mesh.py",
+		"/Users/jfriend/.wine/drive_c/goose64/export_positions.py",
+		"/Users/jfriend/.wine/drive_c/goose64/spatial_hash.py",
+		"/Users/jfriend/.wine/drive_c/goose64/build_cached.sh",
+		"/Users/jfriend/.wine/drive_c/goose64/ultratex.py",
+		"/Users/jfriend/.wine/drive_c/goose64/frustum.c",
+		"/Users/jfriend/.wine/drive_c/goose64/gametypes.h",
+		"/Users/jfriend/.wine/drive_c/goose64/main.h",
+		"/Users/jfriend/.wine/drive_c/goose64/vec3d.c",
+		"/Users/jfriend/.wine/drive_c/goose64/build_modern.sh",
+		"/Users/jfriend/.wine/drive_c/goose64/.gitignore",
+		"/Users/jfriend/.wine/drive_c/goose64/ed64io_everdrive.h",
+		"/Users/jfriend/.wine/drive_c/goose64/collision.h",
+		"/Users/jfriend/.wine/drive_c/goose64/collision.c",
+		"/Users/jfriend/.wine/drive_c/goose64/models.c",
+		"/Users/jfriend/.wine/drive_c/goose64/characterrig.h",
+		"/Users/jfriend/.wine/drive_c/goose64/get_changed_files.py",
+		"/Users/jfriend/.wine/drive_c/goose64/sprites.sh",
+		"/Users/jfriend/.wine/drive_c/goose64/vec2d.c",
+		"/Users/jfriend/.wine/drive_c/goose64/player.c",
+		"/Users/jfriend/.wine/drive_c/goose64/rotation.c",
+		"/Users/jfriend/.wine/drive_c/goose64/rotation.h",
+		"/Users/jfriend/.wine/drive_c/goose64/sound.h",
+		"/Users/jfriend/.wine/drive_c/goose64/animation.h",
+		"/Users/jfriend/.wine/drive_c/goose64/animation.c",
+		"/Users/jfriend/.wine/drive_c/goose64/sprite.h"
+	],
+	"find":
+	{
+		"height": 40.0
+	},
+	"find_in_files":
+	{
+		"height": 121.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"peripheral",
+			"updateLED",
+			"updateLEDs",
+			"updateLED",
+			"ledState",
+			"updateLEDs",
+			"updateLoop",
+			"devices",
+			"noble",
+			"++",
+			"disconnectMeCharacteristic",
+			"disconnectedCharacteristic",
+			"disconnedCharacteristic",
+			"ledStateOld",
+			"toggleLed",
+			"Characteristic",
+			"new Ch",
+			"ledState",
+			"10000",
+			"toggleLed",
+			"asyncLoop",
+			"'",
+			"toggleLed",
+			"connect",
+			"characteristic",
+			"toggleLed",
+			"characteristic",
+			"toggleLed",
+			"shutdown",
+			"ledState",
+			"return",
+			"ledState",
+			"shutdown",
+			"self",
+			"dfb1",
+			"dfb0",
+			"writeLoop",
+			"dfb0",
+			"receive",
+			"transmit",
+			"write",
+			"read",
+			"write",
+			"compareUUIDs",
+			"debug",
+			"characteristic",
+			"transmit",
+			"serviceId",
+			"DEFAULT_SERIAL_SERVICE",
+			"transmit",
+			"data",
+			"receive",
+			"self.",
+			"self.transmit",
+			"self.peripheral",
+			"debug",
+			"fb100001000800000805f9b34fb",
+			"0000dfb100001000800000805f9b34fb",
+			"100",
+			"resolve",
+			"port,",
+			"stream",
+			"cb",
+			"parser",
+			"path",
+			"_updateValueCallback",
+			"_value",
+			"_updateValueCallback",
+			"updateValueCallback",
+			"_updateValueCallback",
+			"Echo",
+			"};",
+			"\nEchoCharacteristic.prototype",
+			"BlenoCharacteristic",
+			"serviceUuids",
+			"this.getter",
+			"===",
+			"* ",
+			",(",
+			"newObj.pos.",
+			":",
+			"pos",
+			"Rotation",
+			"1",
+			"0",
+			"x",
+			"Obj_",
+			"rot",
+			"vecPropKeys",
+			"vecProps",
+			"worldObjects",
+			"hasJSInit",
+			"javascriptMsgQ",
+			"hasJSInit",
+			"numObs",
+			"worldObjects",
+			"setter",
+			"method",
+			"worldObjects[i]",
+			"ed64Printf",
+			"PROF_END",
+			"PROF_INIT",
+			"PROF",
+			"update",
+			"PROFSTART",
+			"PROFINIT",
+			"PROFSTART",
+			"u64",
+			"PROFSTART",
+			"PROFEND",
+			"OS_CYCLES_TO_USEC",
+			"duration",
+			"startTime",
+			"time_usec",
+			"proc",
+			"initObjectsTotal",
+			"x",
+			".z",
+			"x",
+			"0",
+			"initObjectsTotal",
+			"5",
+			"FAR_PLANE",
+			"dummyObjCount",
+			"worldObjectsSize",
+			"addObject",
+			"Obj_getCount",
+			"getNumObjects"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "central.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2131,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								2131
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
+							],
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "bleednotify.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5135,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2721,
+								2747
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
+							],
+							"is_xml": false,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1475.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "blunocentral.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3753,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3180,
+								3050
+							]
+						],
+						"settings":
+						{
+							"auto_name": "var noble = require('@abandonware/noble');",
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
+							],
+							"is_xml": false,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "serialport.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 651,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								651,
+								651
+							]
+						],
+						"settings":
+						{
+							"auto_name": "const SerialPort = require('serialport')",
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
+							],
+							"is_xml": false,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "bleed.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1038,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								274,
+								274
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PackageDev/Package/Sublime Text Project/Sublime Text Project.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "btserial.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1244,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1220,
+								1220
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
+							],
+							"is_xml": false,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "nobleserial.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5160,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4649,
+								4657
+							]
+						],
+						"settings":
+						{
+							"auto_name": "'use strict';",
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
+							],
+							"is_xml": false,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "peripheral.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2046,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1116,
+								1136
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
+							],
+							"is_xml": false,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 44.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.SublimeLinter Messages":
+	{
+		"height": 407.0
+	},
+	"output.aaa_package_dev":
+	{
+		"height": 116.0
+	},
+	"output.exec":
+	{
+		"height": 382.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"output.package_dev":
+	{
+		"height": 116.0
+	},
+	"output.stino_build_panel":
+	{
+		"height": 0.0
+	},
+	"output.stino_panel":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 138.0
+	},
+	"pinned_build_system": "",
+	"project": "bleed.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"buil",
+				"build_exegcc.sh"
+			],
+			[
+				"make",
+				"Makefile"
+			],
+			[
+				"boot",
+				"bootstrap.js"
+			],
+			[
+				"game",
+				"game.js"
+			],
+			[
+				"cons",
+				"console.js"
+			],
+			[
+				"stage",
+				"stage00.c"
+			],
+			[
+				"watch",
+				"ed64io_watchdog.c"
+			],
+			[
+				"main",
+				"main.c"
+			],
+			[
+				"grpah",
+				"graphic.c"
+			],
+			[
+				"fault",
+				"ed64io_fault.c"
+			],
+			[
+				"spec",
+				"spec"
+			],
+			[
+				"yva",
+				"libultra/monegi/libc/yvals.h"
+			],
+			[
+				"mathh",
+				"libultra/monegi/libc/xmath.h"
+			],
+			[
+				"errorfm",
+				"lib/error/error.fmt"
+			],
+			[
+				"xst",
+				"libultra/monegi/libc/xstdio.h"
+			],
+			[
+				"sound",
+				"sound.h"
+			],
+			[
+				"sf",
+				"sfx.h"
+			],
+			[
+				"a",
+				"AUDIO.md"
+			],
+			[
+				"aud",
+				"AUDIO.md"
+			],
+			[
+				"buich",
+				"build_cached.sh"
+			],
+			[
+				"buildcach",
+				"build_cached.sh"
+			],
+			[
+				"mae",
+				"Makefile"
+			],
+			[
+				"build",
+				"build.sh"
+			],
+			[
+				"spe",
+				"spec"
+			],
+			[
+				".md",
+				"AUDIO.md"
+			],
+			[
+				"giti",
+				".gitignore"
+			],
+			[
+				"dasm",
+				"goose.out.dasm"
+			],
+			[
+				"",
+				"common.makefile"
+			],
+			[
+				"go",
+				"goose.out.dasm"
+			],
+			[
+				"gn",
+				"GNUmakefile"
+			],
+			[
+				"modern",
+				"modern.makefile"
+			],
+			[
+				"gnu",
+				"GNUmakefile"
+			],
+			[
+				"commo",
+				"common.makefile"
+			],
+			[
+				"goose.outd",
+				"goose.out.dasm"
+			],
+			[
+				"dis",
+				"disassemble_modern.sh"
+			],
+			[
+				"disass",
+				"disassemble_modern.sh"
+			],
+			[
+				"ed64fa",
+				"ed64io_fault.c"
+			],
+			[
+				"buildmo",
+				"build_modern.sh"
+			],
+			[
+				"buildcac",
+				"build_cached.sh"
+			],
+			[
+				"mainc",
+				"main.c"
+			],
+			[
+				"buildca",
+				"build_cached.sh"
+			],
+			[
+				"buch",
+				"build_cached.sh"
+			],
+			[
+				"render",
+				"renderer.h"
+			],
+			[
+				"const",
+				"constants.h"
+			],
+			[
+				"gnuma",
+				"GNUmakefile"
+			],
+			[
+				"moden",
+				"disassemble_modern.sh"
+			],
+			[
+				"disa",
+				"disassemble_modern.sh"
+			],
+			[
+				"depen",
+				".depend"
+			],
+			[
+				"depe",
+				".depend"
+			],
+			[
+				"consta",
+				"constants.h"
+			],
+			[
+				"buidmo",
+				"build_modern.sh"
+			],
+			[
+				"rende",
+				"renderer.c"
+			],
+			[
+				"gamec",
+				"game.c"
+			],
+			[
+				"constants.h",
+				"constants.h"
+			],
+			[
+				"ream",
+				"README.md"
+			],
+			[
+				"buimod",
+				"build_modern.sh"
+			],
+			[
+				"mak",
+				"common.makefile"
+			],
+			[
+				"depl",
+				"deploy.sh"
+			],
+			[
+				"lo",
+				"localdefs"
+			],
+			[
+				"gl",
+				"glgoose.cpp"
+			],
+			[
+				"art",
+				"ART.md"
+			],
+			[
+				"read",
+				"README.md"
+			],
+			[
+				"rea",
+				"README.md"
+			],
+			[
+				"ma",
+				"Makefile"
+			],
+			[
+				"stag",
+				"stage00.c"
+			],
+			[
+				"runm",
+				"run_mupen.sh"
+			],
+			[
+				"maek",
+				"Makefile"
+			],
+			[
+				"edos",
+				"ed64io_os_error.h"
+			],
+			[
+				"bui",
+				"build.sh"
+			],
+			[
+				"buca",
+				"build_cached.sh"
+			],
+			[
+				"build_ca",
+				"build_cached.sh"
+			],
+			[
+				"GN",
+				"GNUmakefile"
+			],
+			[
+				"compile.bat",
+				"compile.bat"
+			],
+			[
+				"codes",
+				"codesegment_disasm.txt"
+			],
+			[
+				"objdump.bat",
+				"objdump.bat"
+			],
+			[
+				"co",
+				"codesegment_disasm.txt"
+			],
+			[
+				"obj",
+				"objdump.sh"
+			],
+			[
+				"disas",
+				"disassembly.txt"
+			],
+			[
+				"mode",
+				"models.c"
+			],
+			[
+				"run",
+				"run_mupen.sh"
+			],
+			[
+				"makef",
+				"Makefile"
+			],
+			[
+				"sp",
+				"spec"
+			],
+			[
+				"mem",
+				"mem_heap.h"
+			],
+			[
+				"maindis",
+				"main_disasm.txt"
+			],
+			[
+				"edfaul",
+				"ed64io_fault.c"
+			],
+			[
+				"trace",
+				"trace.h"
+			],
+			[
+				"profi",
+				"profiler.c"
+			],
+			[
+				"usb",
+				"ed64io_usb.h"
+			],
+			[
+				"edusb",
+				"ed64io_usb.c"
+			],
+			[
+				"edus",
+				"ed64io_usb.c"
+			],
+			[
+				"graph",
+				"graphic.c"
+			],
+			[
+				"blen",
+				"blender.sh"
+			],
+			[
+				"expoan",
+				"export_animation.py"
+			],
+			[
+				"expocha",
+				"export_character_model.py"
+			],
+			[
+				"ren",
+				"renderer.h"
+			],
+			[
+				"faul",
+				"ed64io_fault.c"
+			],
+			[
+				"buid",
+				"build.sh"
+			],
+			[
+				"fual",
+				"ed64io_fault.h"
+			],
+			[
+				"ed64fau",
+				"ed64io_fault.h"
+			],
+			[
+				"build mo",
+				"build_modern.sh"
+			],
+			[
+				"buildmod",
+				"build_modern.sh"
+			],
+			[
+				"frus",
+				"frustum.c"
+			],
+			[
+				"comp",
+				"compile.bat"
+			],
+			[
+				"ultra",
+				"ultratex.py"
+			],
+			[
+				"stage00",
+				"stage00.c"
+			],
+			[
+				"stag0",
+				"stage00.c"
+			],
+			[
+				"eve",
+				"ed64io_everdrive.h"
+			],
+			[
+				"everdh",
+				"ed64io_everdrive.h"
+			],
+			[
+				"rendere",
+				"renderer.c"
+			],
+			[
+				"trach",
+				"trace.h"
+			],
+			[
+				"grap",
+				"graphic.c"
+			],
+			[
+				"renh",
+				"renderer.h"
+			],
+			[
+				"readme",
+				"README.md"
+			],
+			[
+				"bush",
+				"bush.h"
+			],
+			[
+				"univeco",
+				"university_map_collision.c"
+			],
+			[
+				"coll",
+				"collision.c"
+			],
+			[
+				"glc",
+				"glgoose.cpp"
+			],
+			[
+				"sta",
+				"stage00.c"
+			],
+			[
+				"git",
+				".gitignore"
+			],
+			[
+				"soun",
+				"sound.h"
+			],
+			[
+				"mainh",
+				"main.h"
+			],
+			[
+				"get",
+				"get_changed_files.py"
+			],
+			[
+				"honktest",
+				"honktest1spr.h"
+			],
+			[
+				"test",
+				"testspr.h"
+			],
+			[
+				"wave",
+				"wavefront64/wavefront64.lua"
+			],
+			[
+				"honk3",
+				"honk3spr.h"
+			],
+			[
+				"honk2",
+				"honk2spr.h"
+			],
+			[
+				"ho",
+				"honk1spr.h"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/code/posts/posts.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 370.0,
+		"last_filter": "getti",
+		"selected_items":
+		[
+			[
+				"getti",
+				"gettimeofday"
+			],
+			[
+				"FAR_PLANE",
+				"FAR_PLANE"
+			],
+			[
+				"__osSyncVPrintf",
+				"__osSyncVPrintf"
+			],
+			[
+				"ossync",
+				"osSyncPrintf"
+			],
+			[
+				"InitMusicDriver",
+				"InitMusicDriver"
+			],
+			[
+				"DMA",
+				"DrawMain"
+			],
+			[
+				"alHeapDBAlloc",
+				"alHeapDBAlloc"
+			],
+			[
+				"alHeapAlloc",
+				"alHeapAlloc"
+			],
+			[
+				"nuAuStlSchedDoTask",
+				"nuAuStlSchedDoTask"
+			],
+			[
+				"nuAuStlSchedWaitFrame",
+				"nuAuStlSchedWaitFrame"
+			],
+			[
+				"MusSetScheduler",
+				"MusSetScheduler"
+			],
+			[
+				"nuAuStlMgrInit",
+				"nuAuStlMgrInit"
+			],
+			[
+				"nuAuStlInit",
+				"nuAuStlInit"
+			],
+			[
+				"MusSetMasterVolume",
+				"MusSetMasterVolume"
+			],
+			[
+				"nuAuStlSeqPlayerSetMasterVol",
+				"nuAuStlSeqPlayerSetMasterVol"
+			],
+			[
+				"MusHandleSetVolume",
+				"MusHandleSetVolume"
+			],
+			[
+				"NU_AU_SONG_SIZE",
+				"NU_AU_SONG_SIZE"
+			],
+			[
+				"Soundty",
+				"SoundType"
+			],
+			[
+				"rand",
+				"RAND"
+			],
+			[
+				"RAND",
+				"RAND"
+			],
+			[
+				"SONG",
+				"SONG_END"
+			],
+			[
+				"gfxInit",
+				"gfxInit"
+			],
+			[
+				"debug",
+				"DEBUGPRINT"
+			],
+			[
+				"Trace_addEvent",
+				"Trace_addEvent"
+			],
+			[
+				"tracead",
+				"Trace_addEvent"
+			],
+			[
+				"trace",
+				"Trace_start"
+			],
+			[
+				"initStage00",
+				"initStage00"
+			],
+			[
+				"game",
+				"Game_init"
+			],
+			[
+				"ed64RegisterOSErrorHandler",
+				"ed64RegisterOSErrorHandler"
+			],
+			[
+				"ed64PrintStackTrace",
+				"ed64PrintStackTrace"
+			],
+			[
+				"EXTERN_SEGMENT_WITH_BSS",
+				"EXTERN_SEGMENT_WITH_BSS"
+			],
+			[
+				"PerfLogger_logChunk",
+				"PerfLogger_logChunk"
+			],
+			[
+				"SamplingProfiler_startThread",
+				"SamplingProfiler_startThread"
+			],
+			[
+				"Trace_clear",
+				"Trace_clear"
+			],
+			[
+				"regDesc_t",
+				"regDesc_t"
+			],
+			[
+				"inva",
+				"invariant"
+			],
+			[
+				"ED64IO_FAULT_STACKSIZE",
+				"ED64IO_FAULT_STACKSIZE"
+			],
+			[
+				"SCREEN_HT",
+				"SCREEN_HT"
+			],
+			[
+				"assert",
+				"ed64Assert"
+			],
+			[
+				"invar",
+				"invariant"
+			],
+			[
+				"characini",
+				"Character_init"
+			],
+			[
+				"char",
+				"Character"
+			],
+			[
+				"upda",
+				"updateGame00"
+			],
+			[
+				"Renderer_sortVisibleObjects",
+				"Renderer_sortVisibleObjects"
+			],
+			[
+				"Renderer_isCloser",
+				"Renderer_isCloserBySeparatingPlane"
+			],
+			[
+				"Renderer_getSeparatingPlane",
+				"Renderer_getSeparatingPlane"
+			],
+			[
+				"update",
+				"updateGame00"
+			],
+			[
+				"Plane_distance",
+				"Plane_distance"
+			],
+			[
+				"render",
+				"Renderer_cullVisibility"
+			],
+			[
+				"rendere",
+				"Renderer_cullVisibility"
+			],
+			[
+				"ed64",
+				"ed64PrintfSync2"
+			],
+			[
+				"ed64SendFaultMessage",
+				"ed64SendFaultMessage"
+			],
+			[
+				"Renderer_isBackgroundGameObject",
+				"Renderer_isBackgroundGameObject"
+			],
+			[
+				"Renderer_calcIntersecting",
+				"Renderer_calcIntersecting"
+			],
+			[
+				"gfxClearCfb",
+				"gfxClearCfb"
+			],
+			[
+				"invariant",
+				"invariant"
+			],
+			[
+				"isback",
+				"Renderer_isBackgroundGameObject"
+			],
+			[
+				"Renderer_isZBufferedGameObject",
+				"Renderer_isZBufferedGameObject"
+			],
+			[
+				"renderer",
+				"Renderer_cullVisibility"
+			],
+			[
+				"RendererSortDistance",
+				"RendererSortDistance"
+			],
+			[
+				"Vec3d_directionTo",
+				"Vec3d_directionTo"
+			],
+			[
+				"MEM_HEAP_SIZE",
+				"MEM_HEAP_SIZE"
+			],
+			[
+				"gameob",
+				"GameObject"
+			],
+			[
+				"zbu",
+				"Renderer_isZBufferedGameObject"
+			],
+			[
+				"aabb",
+				"AABB_fromSphere"
+			],
+			[
+				"AABB",
+				"AABB"
+			],
+			[
+				"getModelDisplayList",
+				"getModelDisplayList"
+			],
+			[
+				"G_RM_AA_ZUPD_OPA_SURF",
+				"G_RM_AA_ZUPD_OPA_SURF"
+			],
+			[
+				"updateGame00",
+				"updateGame00"
+			],
+			[
+				"main",
+				"main"
+			],
+			[
+				"MIN",
+				"MIN"
+			],
+			[
+				"camera",
+				"Game_updateCamera"
+			],
+			[
+				"Rand",
+				"RAND"
+			],
+			[
+				"Game_getObjCenter",
+				"Game_getObjCenter"
+			],
+			[
+				"padBinaryLeft",
+				"padBinaryLeft"
+			],
+			[
+				"draww",
+				"drawWorldObjects"
+			],
+			[
+				"drawW",
+				"drawWorldObjects"
+			],
+			[
+				"Sprite_frameCycle",
+				"Sprite_frameCycle"
+			],
+			[
+				"fram",
+				"Sprite_frameCycle"
+			],
+			[
+				"Matr",
+				"Matrix4"
+			],
+			[
+				"Matrix",
+				"Matrix4"
+			],
+			[
+				"player",
+				"Player_move"
+			],
+			[
+				"E",
+				"Euler"
+			],
+			[
+				"animSta",
+				"AnimationState"
+			],
+			[
+				"Dynamic",
+				"Dynamic"
+			],
+			[
+				"gameo",
+				"GameObject"
+			],
+			[
+				"Gameob",
+				"GameObject_init"
+			],
+			[
+				"Renderer_cullVisibility",
+				"Renderer_cullVisibility"
+			],
+			[
+				"updagame",
+				"updateGame00"
+			],
+			[
+				"stage0",
+				"stage00"
+			],
+			[
+				"makeDL00",
+				"makeDL00"
+			],
+			[
+				"Game_update",
+				"Game_update"
+			],
+			[
+				"chracini",
+				"Character_init"
+			],
+			[
+				"getmo",
+				"getMeshForModelType"
+			],
+			[
+				"logtr",
+				"logTraceChunk"
+			],
+			[
+				"renderso",
+				"Renderer_sortVisibleObjects"
+			],
+			[
+				"loadBMP_custom",
+				"loadBMP_custom"
+			],
+			[
+				"update00",
+				"updateGame00"
+			],
+			[
+				"make",
+				"makeDL00"
+			],
+			[
+				"rendererc",
+				"Renderer_cullVisibility"
+			],
+			[
+				"ma",
+				"makeDL00"
+			],
+			[
+				"maked",
+				"makeDL00"
+			],
+			[
+				"HIGH_RESOLUTION",
+				"HIGH_RESOLUTION"
+			],
+			[
+				"makedl",
+				"makeDL00"
+			],
+			[
+				"getCen",
+				"GetCenter"
+			],
+			[
+				"model",
+				"ModelProperties"
+			],
+			[
+				"physb",
+				"PhysBody"
+			],
+			[
+				"ImGuiInputTextFlags",
+				"ImGuiInputTextFlags_"
+			],
+			[
+				"inputFlo",
+				"InputFloat"
+			],
+			[
+				"phys",
+				"PhysBody"
+			],
+			[
+				"Gameo",
+				"GameObject"
+			],
+			[
+				"InputF",
+				"InputFloat3"
+			],
+			[
+				"ImGuiInputTextFlags_",
+				"ImGuiInputTextFlags_"
+			],
+			[
+				"InputFloat3",
+				"InputFloat3"
+			],
+			[
+				"inputflo",
+				"InputFloat3"
+			],
+			[
+				"inputfl",
+				"InputFloat"
+			],
+			[
+				"InputFloat",
+				"InputFloat"
+			],
+			[
+				"GameObj",
+				"GameObject"
+			],
+			[
+				"EulerDe",
+				"EulerDegrees"
+			],
+			[
+				"FLT_EPSILON",
+				"FLT_EPSILON"
+			],
+			[
+				"rayinter",
+				"Game_rayIntersectsSphere"
+			],
+			[
+				"gameray",
+				"Game_rayIntersectsSphere"
+			],
+			[
+				"Vec3d",
+				"VEC3D_H"
+			],
+			[
+				"vec3d",
+				"Vec3d"
+			],
+			[
+				"Game_getIntersectingObject",
+				"Game_getIntersectingObject"
+			],
+			[
+				"RaycastTraceEvent",
+				"RaycastTraceEvent"
+			],
+			[
+				"Game_traceRaycast",
+				"Game_traceRaycast"
+			],
+			[
+				"Game_rayIntersectsSphere",
+				"Game_rayIntersectsSphere"
+			]
+		],
+		"width": 1734.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 342.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
