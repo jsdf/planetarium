@@ -6,6 +6,17 @@ import * as ease from 'ease-component';
 import * as THREE from 'three';
 import useLocalStorage from './useLocalStorage';
 
+import {EffectComposer} from 'three/examples/jsm/postprocessing/EffectComposer.js';
+import {RenderPass} from 'three/examples/jsm/postprocessing/RenderPass.js';
+import {ShaderPass} from 'three/examples/jsm/postprocessing/ShaderPass.js';
+import {LuminosityShader} from 'three/examples/jsm/shaders/LuminosityShader.js';
+import * as makeOrbitControls from 'three-orbit-controls';
+import {Noise} from 'noisejs';
+
+const OrbitControls = makeOrbitControls(THREE);
+
+var noise = new Noise(Math.random());
+
 const BEAT_WINDOW_SIZE_MS = 2000;
 
 function getBeats(currentOffset, bpm) {
@@ -59,8 +70,19 @@ function createRenderLoop(draw) {
   };
 }
 
-function Canvas({bpm, startTime, windowDimensions, attack, release}) {
+function renderLog(textRef, logLines) {
+  const textEl = textRef.current;
+  if (textEl) {
+    textEl.innerText = logLines.join('\n');
+  }
+}
+
+function Canvas2D(props) {
   const canvasRef = React.useRef(null);
+  const propsRef = React.useRef(props);
+  propsRef.current = props;
+
+  const {windowDimensions} = props;
 
   React.useEffect(() => {
     const canvas = canvasRef.current;
@@ -74,6 +96,17 @@ function Canvas({bpm, startTime, windowDimensions, attack, release}) {
     canvas.height = height;
 
     function draw() {
+      const {
+        bpm,
+        startTime,
+        windowDimensions,
+        attack,
+        release,
+        textRef,
+        frameCounter,
+      } = propsRef.current;
+      const {width, height} = windowDimensions;
+      const logLines = [];
       const now = performance.now();
       const currentOffset = now - startTime;
       const beats = getBeats(currentOffset, bpm);
@@ -87,19 +120,25 @@ function Canvas({bpm, startTime, windowDimensions, attack, release}) {
       for (const beat of beats) {
         const posX = beat.time - currentOffset;
         ctx.beginPath();
-        ctx.arc(posX + width / 2, 75, 50, 0, 2 * Math.PI);
+        ctx.arc(posX + width / 2, height / 2, 50, 0, 2 * Math.PI);
         ctx.strokeStyle = 'white';
         ctx.stroke();
       }
       ctx.beginPath();
-      ctx.arc(width / 2, 75, 50, 0, 2 * Math.PI);
+      ctx.arc(width / 2, height / 2, 50, 0, 2 * Math.PI);
       const intenseStyle = `rgba(255,255,255,${intensity})`;
       ctx.fillStyle = intenseStyle;
       ctx.fill();
 
-      ctx.font = '24px monospace';
-      ctx.fillStyle = 'white';
-      ctx.fillText(intenseStyle, 100, height - 100);
+      // ctx.font = '24px monospace';
+      // ctx.fillStyle = 'white';
+      // ctx.fillText(intenseStyle, 100, height - 100);
+      logLines.push(intenseStyle);
+
+      frameCounter.update();
+      logLines.push(frameCounter.format());
+
+      renderLog(textRef, logLines);
     }
 
     const cleanup = createRenderLoop(draw);
@@ -115,53 +154,230 @@ function Canvas({bpm, startTime, windowDimensions, attack, release}) {
   );
 }
 
-function WebGL(props) {
+function makeCube() {
+  var geometry = new THREE.BoxGeometry(3, 3, 3);
+  var material = new THREE.MeshBasicMaterial({
+    color: 0xffe259,
+    transparent: true,
+  });
+  return new THREE.Mesh(geometry, material);
+}
+
+class Scroller {
+  constructor({rowSize, windowSize, startOffset, enter, exit}) {
+    this.rowSize = rowSize;
+    this.windowSize = windowSize;
+    this.pos = startOffset;
+    this.enter = enter;
+    this.exit = exit;
+
+    this.traverseWindowQuantized(
+      startOffset - windowSize / 2,
+      startOffset + windowSize / 2,
+      enter
+    );
+  }
+
+  format() {
+    return `pos=${this.pos.toFixed(2)}`;
+  }
+
+  traverseWindowQuantized(from, to, fn) {
+    const start = Math.ceil(from / this.rowSize);
+    const end = Math.floor(to / this.rowSize);
+    for (var i = start; i < end; i++) {
+      fn(i * this.rowSize, i);
+    }
+  }
+
+  update(nextPos) {
+    const delta = nextPos - this.pos;
+    const positiveEdge = this.pos + this.windowSize / 2;
+    const negativeEdge = this.pos - this.windowSize / 2;
+
+    // exit the stuff on the trailing edge, enter the stuff on the leading edge
+    if (delta > 0) {
+      // moving forwards
+      this.traverseWindowQuantized(
+        negativeEdge,
+        negativeEdge + delta,
+        this.exit
+      );
+      this.traverseWindowQuantized(
+        positiveEdge,
+        positiveEdge + delta,
+        this.enter
+      );
+    } else {
+      // moving backwards
+      this.traverseWindowQuantized(
+        positiveEdge + delta,
+        positiveEdge,
+        this.exit
+      );
+      this.traverseWindowQuantized(
+        negativeEdge + delta,
+        negativeEdge,
+        this.enter
+      );
+    }
+
+    this.pos += delta;
+  }
+}
+
+var waveMaterial = new THREE.LineBasicMaterial({color: 0xbbd2c5});
+
+const waveWidth = 100;
+const wavePoints = 100;
+const wavePointWidth = waveWidth / wavePoints;
+function makeWave(x) {
+  const points = [];
+  for (var y = 0; y < wavePoints; y++) {
+    const height = Math.abs(noise.perlin2(x / 100, y / 100) * 100);
+    points.push(
+      new THREE.Vector3(x - 50, height - 10, y * wavePointWidth - waveWidth / 2)
+    );
+  }
+  return new THREE.Line(
+    new THREE.BufferGeometry().setFromPoints(points),
+    waveMaterial
+  );
+}
+
+function scaleToTop(value, proportion) {
+  return value * proportion + (1 - proportion);
+}
+
+function noiseWaves(props, canvas) {
+  var scene = new THREE.Scene();
+
+  const {windowDimensions} = props;
+
+  scene.fog = new THREE.FogExp2(0x000, 0.01);
+  var camera = new THREE.PerspectiveCamera(
+    75,
+    windowDimensions.width / windowDimensions.height,
+    0.1,
+    10000
+  );
+
+  const orbitControls = new OrbitControls(camera, canvas);
+
+  var renderer = new THREE.WebGLRenderer({canvas});
+  renderer.setSize(windowDimensions.width, windowDimensions.height);
+  // set up post processing
+  var composer = new EffectComposer(renderer);
+  var renderPass = new RenderPass(scene, camera);
+  composer.addPass(renderPass);
+
+  // var luminosityPass = new ShaderPass(LuminosityShader);
+  // composer.addPass(luminosityPass);
+
+  var cube = makeCube();
+  scene.add(cube);
+
+  const waveObj = new THREE.Group();
+  const wavesMap = new Map();
+
+  waveObj.position.y = -25;
+  waveObj.position.x = 100;
+  waveObj.position.z = 0;
+
+  const waveScroller = new Scroller({
+    rowSize: 1,
+    windowSize: 100,
+    startOffset: 0,
+    enter: (pos, index) => {
+      const wave = makeWave(index);
+      wavesMap.set(index, wave);
+      waveObj.add(wave);
+    },
+    exit: (pos, index) => {
+      waveObj.remove(wavesMap.get(index));
+      wavesMap.delete(index);
+    },
+  });
+
+  scene.add(waveObj);
+
+  camera.position.x = 10;
+  camera.lookAt(cube.position);
+
+  function draw({
+    bpm,
+    startTime,
+    attack,
+    release,
+    textRef,
+    frameCounter,
+    scroll,
+    logLines,
+  }) {
+    cube.rotation.z += 0.002;
+    cube.rotation.y += 0.01;
+    cube.rotation.x += 0.01;
+    // waveObj.rotation.z += 0.002;
+    // waveObj.rotation.y += 0.01;
+    // waveObj.rotation.x += 0.01;
+    orbitControls.update();
+
+    const now = performance.now();
+    const currentOffset = now - startTime;
+    const beats = getBeats(currentOffset, bpm);
+    const intensity = sampleBeats(beats, currentOffset, attack, release);
+    cube.scale.setScalar(scaleToTop(intensity, 0.25));
+    cube.material.opacity = scaleToTop(intensity, 0.25);
+    cube.material.wireframe = intensity < 0.7;
+
+    waveObj.position.x += 1;
+    waveScroller.update(-waveObj.position.x);
+    waveObj.scale.z = scaleToTop(intensity, 1 / 16);
+
+    logLines.push(waveScroller.format());
+    logLines.push(`intensity=${intensity.toFixed(2)}`);
+
+    // renderer.render(scene, camera);
+    composer.render();
+  }
+
+  return {draw};
+}
+
+const layers = {
+  noiseWaves: noiseWaves,
+};
+
+function ThreeCanvas(props) {
+  const [layerType, setLayerType] = React.useState('noiseWaves');
   const canvasRef = React.useRef(null);
   const propsRef = React.useRef(props);
   propsRef.current = props;
 
-  const {windowDimensions} = props;
+  const {windowDimensions, frameCounter, textRef} = props;
 
   React.useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) {
+    if (canvasRef.current == null) {
       return;
     }
-    var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(
-      75,
-      windowDimensions.width / windowDimensions.height,
-      0.1,
-      1000
-    );
 
-    var renderer = new THREE.WebGLRenderer({canvas});
-    renderer.setSize(windowDimensions.width, windowDimensions.height);
-    var geometry = new THREE.BoxGeometry();
-    var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
-    var cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
+    const makeLayer = layers[layerType];
+    const layer = makeLayer(propsRef.current, canvasRef.current);
 
-    camera.position.z = 5;
+    const cleanupRenderLoop = createRenderLoop(() => {
+      const logLines = [];
+      layer.draw({...propsRef.current, logLines});
 
-    function draw() {
-      const {bpm, startTime, attack, release} = propsRef.current;
-      cube.rotation.z += 0.002;
-      cube.rotation.y += 0.01;
-      cube.rotation.x += 0.01;
+      frameCounter.update();
+      logLines.push(frameCounter.format());
 
-      const now = performance.now();
-      const currentOffset = now - startTime;
-      const beats = getBeats(currentOffset, bpm);
-      const intensity = sampleBeats(beats, currentOffset, attack, release);
-      cube.scale.setScalar(intensity / 4 + 3 / 4);
-
-      renderer.render(scene, camera);
-    }
-
-    const cleanup = createRenderLoop(draw);
-    return cleanup;
-  }, [windowDimensions]);
+      renderLog(textRef, logLines);
+    });
+    return () => {
+      layer.cleanup && layer.cleanup();
+      cleanupRenderLoop();
+    };
+  }, [windowDimensions, layerType]);
 
   return (
     <canvas
@@ -174,7 +390,7 @@ function WebGL(props) {
 
 function Range({label, onChange, ...passthroughProps}) {
   return (
-    <label>
+    <label className="Range">
       {label}
       <input
         type="text"
@@ -192,7 +408,7 @@ function Range({label, onChange, ...passthroughProps}) {
 
 function Select({options, label, value, onChange}) {
   return (
-    <label>
+    <label className="Select">
       {label}
       <select value={value} onChange={(e) => onChange(e.currentTarget.value)}>
         {options.map((option, i) => (
@@ -208,48 +424,78 @@ function Select({options, label, value, onChange}) {
 function TapBPM({onBPM, onStartTime, children}) {
   const tapRef = React.useRef([]);
 
-  return (
-    <div
-      onPointerDown={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
+  const handleTap = (e) => {
+    //e.preventDefault();
+    e.stopPropagation();
 
-        const taps = tapRef.current;
-        const now = performance.now();
-        const prevTap = taps[taps.length - 1];
+    const taps = tapRef.current;
+    const now = performance.now();
+    const prevTap = taps[taps.length - 1];
 
-        // if it's been too long since last tap, reset. throw out any really old taps
-        const recentTaps = (prevTap == null || prevTap < now - 1400
-          ? []
-          : taps
-        ).filter((time) => time > now - 5000);
+    // if it's been too long since last tap, reset. throw out any really old taps
+    const recentTaps = (prevTap == null || prevTap < now - 1400
+      ? []
+      : taps
+    ).filter((time) => time > now - 5000);
 
-        recentTaps.push(now);
+    recentTaps.push(now);
 
-        const last4 = recentTaps.slice(Math.max(recentTaps.length - 4, 0));
+    // const last4 = recentTaps.slice(Math.max(recentTaps.length - 4, 0));
 
-        tapRef.current = last4;
-        if (last4.length == 4) {
-          // take the mean time between taps
-          const meanInterval = (last4[3] - last4[0]) / 3;
-          onBPM(60000 / meanInterval);
-          onStartTime(last4[0]);
-        }
-      }}
-    >
-      {children}
-    </div>
-  );
+    tapRef.current = recentTaps;
+    if (recentTaps.length >= 4) {
+      // take the mean time between taps
+      const meanInterval =
+        (recentTaps[recentTaps.length - 1] - recentTaps[0]) /
+        (recentTaps.length - 1);
+      onBPM(60000 / meanInterval);
+      onStartTime(recentTaps[0]);
+    }
+  };
+
+  return <div onPointerDown={handleTap}>{children}</div>;
 }
 
 function roundTo3DP(num) {
   return Math.round(num * 1000) / 1000;
 }
 
+class FrameCounter {
+  frame = 0;
+  // for avg frame count
+  lastAvgFrameCount = 0;
+  // for avg frame time
+  frameTimeSum = 0;
+  lastAvgFrameTime = 0;
+  lastFrameStart = performance.now();
+
+  update() {
+    const now = performance.now();
+    // every 60 frames, calculate avg frame time
+    this.frameTimeSum += now - this.lastFrameStart;
+    this.lastFrameStart = now;
+    if (this.frame % 60 === 0) {
+      this.lastAvgFrameTime = this.frameTimeSum / 60;
+      this.lastAvgFrameCount = 1000 / this.lastAvgFrameTime;
+      // reset
+      this.frameTimeSum = 0;
+    }
+
+    this.frame++;
+  }
+
+  format() {
+    return `fps=${this.lastAvgFrameCount.toFixed(
+      1
+    )} frametime=${this.lastAvgFrameTime.toFixed(2)}ms`;
+  }
+}
+
 function App() {
   const [view, setView] = useLocalStorage('view', '2d');
   const [bpm, setBPM] = React.useState(120);
   const [startTime, setStartTime] = React.useState(performance.now());
+  const [scroll, setScroll] = React.useState(0);
 
   const [attack, setAttack] = React.useState(100);
   const [release, setRelease] = React.useState(600);
@@ -258,6 +504,13 @@ function App() {
     width: window.innerWidth,
     height: window.innerHeight,
   });
+
+  const textRef = React.useRef(null);
+  const frameCounterRef = React.useRef(null);
+  if (frameCounterRef.current == null) {
+    frameCounterRef.current = new FrameCounter();
+  }
+  const frameCounter = frameCounterRef.current;
 
   React.useEffect(() => {
     window.addEventListener(
@@ -271,9 +524,50 @@ function App() {
     );
   });
 
+  const rendererProps = {
+    bpm,
+    startTime,
+    windowDimensions,
+    attack,
+    release,
+    textRef,
+    frameCounter,
+    scroll,
+  };
+
+  const beatPeriod = 60000 / bpm;
+
   return (
     <div>
-      <div style={{position: 'absolute', top: 0, left: 0}}>
+      <div style={{position: 'absolute', top: 16, left: 16}}>
+        <div>
+          <label>jog: </label>
+          <button onClick={() => setStartTime((s) => s - 10)}>&larr;</button>
+          <button onClick={() => setStartTime((s) => s + 10)}>
+            &rarr;
+          </button>{' '}
+          {Math.round(((startTime % beatPeriod) / beatPeriod) * 100)} %
+        </div>
+        <Select
+          label="view: "
+          options={['2d', '3d']}
+          value={view}
+          onChange={setView}
+        />
+        <Range
+          label="bpm: "
+          min={40}
+          max={240}
+          value={roundTo3DP(bpm)}
+          onChange={setBPM}
+        />
+        <Range
+          label="scroll: "
+          min={0}
+          max={1000}
+          value={scroll}
+          onChange={setScroll}
+        />
         <Range
           label="attack: "
           min={0}
@@ -288,27 +582,19 @@ function App() {
           value={release}
           onChange={setRelease}
         />
-        <Range
-          label="bpm: "
-          min={40}
-          max={240}
-          value={roundTo3DP(bpm)}
-          onChange={setBPM}
-        />
-        <Select
-          label="view: "
-          options={['2d', '3d']}
-          value={view}
-          onChange={setView}
-        />
       </div>
       <TapBPM onBPM={setBPM} onStartTime={setStartTime}>
         {view === '2d' ? (
-          <Canvas {...{bpm, startTime, windowDimensions, attack, release}} />
+          <Canvas2D {...rendererProps} />
         ) : (
-          <WebGL {...{bpm, startTime, windowDimensions, attack, release}} />
+          <ThreeCanvas {...rendererProps} />
         )}
       </TapBPM>
+
+      <pre
+        style={{position: 'absolute', bottom: 16, left: 16, fontSize: 16}}
+        ref={textRef}
+      />
     </div>
   );
 }

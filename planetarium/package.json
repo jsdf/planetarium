@@ -8,10 +8,12 @@
     "@testing-library/user-event": "^7.1.2",
     "debounce": "^1.2.0",
     "ease-component": "^1.0.0",
+    "noisejs": "^2.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
-    "three": "^0.120.0"
+    "three": "^0.120.0",
+    "three-orbit-controls": "^82.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -44,10 +44,16 @@ body {
   background: black;
 }
 
-input {
+input,
+select {
   background: black;
   color: white;
   min-width: 50px;
   border: solid 1px white;
   border-radius: 4px;
+}
+
+.Select,
+.Range {
+  display: block;
 }
