@@ -98,6 +98,7 @@ noble.on('discover', (peripheral) => {
   console.log(
     new Date(),
     peripheral.id,
+    peripheral.address,
     peripheral.advertisement.localName || '[no name]',
     peripheral.rssi
     // peripheral
