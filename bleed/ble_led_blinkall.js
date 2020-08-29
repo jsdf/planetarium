@@ -11,7 +11,7 @@ function compareUUIDs(a, b) {
 
 let ledState = true;
 
-let logging = false;
+let logging = true;
 
 const devices = new Map();
 const characteristicsMap = {};
@@ -65,7 +65,7 @@ async function updateLEDs() {
   ledState = !ledState;
 
   logging &&
-    console.log('setting led', ledState ? 'on' : 'off', 'for', [
+    console.log(new Date(), 'setting led', ledState ? 'on' : 'off', 'for', [
       ...devices.keys(),
     ]);
 
@@ -91,7 +91,7 @@ function updateLoop() {
       .catch((err) => {
         console.error('updateLoop error', err);
       });
-  }, 500);
+  }, 10000);
 }
 
 noble.on('discover', (peripheral) => {
