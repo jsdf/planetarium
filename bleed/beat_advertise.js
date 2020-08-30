@@ -1,29 +1,51 @@
 const bleno = require('@abandonware/bleno');
+const os = require('os');
 
 // var name = 'dick';
-var name = null;
-var serviceUuid = 'feedbeeffffffffffffffffffffffff0';
+var name = '';
+var serviceUuid = 'f0000000000000000000000000000000';
 
 function getAdvertisedUUIDs() {
-  return ['b0ef', serviceUuid];
+  if (os.platform() == 'darwin') {
+    return [serviceUuid, 'b0ef'];
+  } else {
+    return ['b0ef', serviceUuid];
+  }
 }
 
 let poweredOn = false;
 let advertising = false;
 
-function restart() {
-  advertising = false;
-  bleno.stopAdvertising(() => {
-    const newUUID = [];
-    for (var i = 0; i < serviceUuid.length; i++) {
-      newUUID[i] = Math.floor(Math.random() * 16).toString(16);
-    }
-    serviceUuid = newUUID.join('');
-    start();
-  });
+function setUUID(uuid) {
+  if (uuid.length != 32) {
+    throw new Error(`invalid uuid length: ${uuid.length} (${uuid})`);
+  }
+  serviceUuid = uuid;
+
+  if (advertising) {
+    restartAdvertising();
+  }
 }
 
-function start() {
+function restartAdvertising() {
+  advertising = false;
+  if (os.platform() == 'darwin') {
+    bleno.stopAdvertising(() => {});
+    setTimeout(() => {
+      startAdvertising(() => {
+        console.log('now advertising', getAdvertisedUUIDs());
+      });
+    }, 0);
+  } else {
+    bleno.stopAdvertising(() => {
+      startAdvertising(() => {
+        console.log('now advertising', getAdvertisedUUIDs());
+      });
+    });
+  }
+}
+
+function startAdvertising() {
   advertising = true;
   bleno.startAdvertising(name, getAdvertisedUUIDs(), (err) => {
     if (err) {
@@ -34,20 +56,36 @@ function start() {
   });
 }
 
-function advertiseLoop() {
+function init() {
+  bleno.on('stateChange', (state) => {
+    console.log('stateChange', state);
+    if (state == 'poweredOn') {
+      if (!poweredOn) {
+        poweredOn = true;
+        startAdvertising();
+      }
+    }
+  });
+}
+
+function advertiseTestLoop() {
   setTimeout(() => {
-    restart();
-    advertiseLoop();
+    // gen random uuid
+    const newUUIDChars = [];
+    for (var i = 0; i < serviceUuid.length; i++) {
+      newUUIDChars[i] = Math.floor(Math.random() * 16).toString(16);
+    }
+    const newUUID = newUUIDChars.join('');
+    console.log('set new uuid', newUUID);
+    setUUID(newUUID);
+
+    advertiseTestLoop();
   }, 1000);
 }
 
-bleno.on('stateChange', (state) => {
-  console.log('stateChange', state);
-  if (state == 'poweredOn') {
-    if (!poweredOn) {
-      poweredOn = true;
-      start();
-      advertiseLoop();
-    }
-  }
-});
+if (require.main === module) {
+  init();
+  advertiseTestLoop();
+}
+
+module.exports = {init, setUUID};

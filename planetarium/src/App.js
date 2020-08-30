@@ -6,12 +6,27 @@ import * as ease from 'ease-component';
 import * as THREE from 'three';
 import useLocalStorage from './useLocalStorage';
 
+import io from 'socket.io-client';
+
 import {EffectComposer} from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import {RenderPass} from 'three/examples/jsm/postprocessing/RenderPass.js';
 import {ShaderPass} from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import {LuminosityShader} from 'three/examples/jsm/shaders/LuminosityShader.js';
 import * as makeOrbitControls from 'three-orbit-controls';
 import {Noise} from 'noisejs';
+
+var searchParams = new URLSearchParams(window.location.search);
+
+if (!searchParams.has('port')) {
+  window.alert(`'port' url query param required`);
+  throw new Error(`'port' url query param required`);
+}
+
+const socketPort = parseInt(searchParams.get('port'));
+
+function serverURL(path) {
+  return `http://localhost:${socketPort}${path}`;
+}
 
 const OrbitControls = makeOrbitControls(THREE);
 
@@ -39,17 +54,17 @@ function curve(n, attack, release) {
   return n < 0 ? ease.inCube(n / attack + 1) : ease.inCube(1 - n / release);
 }
 
-// constructively combine curves at time
-function sampleBeats(beats, currentOffset, attack, release) {
+function sampleBeatsIntensity(beats, currentOffset, attack, release) {
   let total = 0;
 
+  // constructively combine curves at time
   for (const beat of beats) {
     const t = currentOffset - beat.time;
 
     total += Math.max(0, curve(t, attack, release));
   }
 
-  return total;
+  return Math.min(1, total); // clip to 1.0
 }
 
 function createRenderLoop(draw) {
@@ -110,7 +125,12 @@ function Canvas2D(props) {
       const now = performance.now();
       const currentOffset = now - startTime;
       const beats = getBeats(currentOffset, bpm);
-      const intensity = sampleBeats(beats, currentOffset, attack, release);
+      const intensity = sampleBeatsIntensity(
+        beats,
+        currentOffset,
+        attack,
+        release
+      );
 
       ctx.beginPath();
       ctx.rect(0, 0, width, height);
@@ -325,7 +345,12 @@ function noiseWaves(props, canvas) {
     const now = performance.now();
     const currentOffset = now - startTime;
     const beats = getBeats(currentOffset, bpm);
-    const intensity = sampleBeats(beats, currentOffset, attack, release);
+    const intensity = sampleBeatsIntensity(
+      beats,
+      currentOffset,
+      attack,
+      release
+    );
     cube.scale.setScalar(scaleToTop(intensity, 0.25));
     cube.material.opacity = scaleToTop(intensity, 0.25);
     cube.material.wireframe = intensity < 0.7;
@@ -496,6 +521,20 @@ class FrameCounter {
   }
 }
 
+let bleSyncMessage = null;
+const flushBLESyncMessage = debounce(() => {
+  if (!bleSyncMessage) return;
+
+  const {api, bpm, startTime} = bleSyncMessage;
+
+  api.sendCommand('blecast', {bpm, startTime});
+}, 1000);
+
+function sendBLESyncMessage(message) {
+  bleSyncMessage = message;
+  flushBLESyncMessage();
+}
+
 function App() {
   const [view, setView] = useLocalStorage('view', '2d');
   const [bpm, setBPM] = React.useState(120);
@@ -527,7 +566,65 @@ function App() {
         });
       }, 300)
     );
-  });
+  }, []);
+
+  // server stuff
+  const [serverState, setServerState] = React.useState(null);
+  const [clientErrors, setClientErrors] = React.useState([]);
+  let apiRef = React.useRef(null);
+
+  React.useEffect(() => {
+    // create socket connection
+    const socket = io.connect(serverURL(''));
+    socket.on('state', (newState) => {
+      console.log(newState);
+      setServerState(newState);
+    });
+    socket.on('disconnect', () => {
+      console.log('got disconnect message');
+      setClientErrors((prev) =>
+        prev.concat({
+          message: 'disconnected',
+          error: null,
+        })
+      );
+    });
+    socket.on('error', (error) => {
+      console.log('got error message', error);
+      setClientErrors((prev) =>
+        prev.concat({
+          message: 'io error',
+          error: error,
+        })
+      );
+    });
+
+    const api = {
+      sendCommand(cmd, data) {
+        socket.emit('cmd', {cmd, data});
+      },
+    };
+    apiRef.current = api;
+
+    sendBLESyncMessage({api, bpm, startTime});
+  }, []);
+
+  // expose server state for debugging
+  React.useEffect(() => {
+    window.serverDebug = {
+      apiRef,
+      serverState,
+      clientErrors,
+    };
+  }, [serverState, clientErrors]);
+
+  // send broadcast upon bpm/startTime change
+  React.useEffect(() => {
+    const api = apiRef.current;
+    if (!api) return;
+
+    sendBLESyncMessage({api, bpm, startTime});
+  }, [bpm, startTime]);
 
   const rendererProps = {
     bpm,

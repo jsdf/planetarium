@@ -9,7 +9,7 @@
   "author": "James Friend <james@jsdf.co> (http://jsdf.co/)",
   "license": "ISC",
   "dependencies": {
-    "@abandonware/bleno": "^0.5.1-2",
+    "@abandonware/bleno": "github:ptx2/bleno#native-macos-bindings",
     "@abandonware/noble": "^1.9.2-9",
     "@serialport/parser-readline": "^9.0.1",
     "bluetooth-serial-port": "^2.2.7",
