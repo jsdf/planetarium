@@ -46,20 +46,22 @@ void loop() {
     // print the advertised service UUIDs, if present
     if (peripheral.hasAdvertisedServiceUuid()) {
 #if LOGGING
-      Serial.print("localName: ");
-      Serial.print(peripheral.localName());
+      if (peripheral.advertisedServiceUuid(0) == "b0ef") {
+        // Serial.print("addr: ");
+        // Serial.print(peripheral.address());
+        // Serial.println();
+        // Serial.print("Service UUIDs: ");
+        for (int i = 0; i < peripheral.advertisedServiceUuidCount(); i++) {
+          // Serial.print(peripheral.advertisedServiceUuid(i));
+          // Serial.print(" ");
+        }
+        // Serial.println();
+        unsigned long end = millis();
 
-      Serial.print("Service UUIDs: ");
-      for (int i = 0; i < peripheral.advertisedServiceUuidCount(); i++) {
-        Serial.print(peripheral.advertisedServiceUuid(i));
-        Serial.print(" ");
+        Serial.print("took: ");
+        Serial.print(end - start, DEC);
+        Serial.println();
       }
-      Serial.println();
-      unsigned long end = millis();
-
-      Serial.print("took: ");
-      Serial.print(end - start, DEC);
-      Serial.println();
 #endif
     }
   }
