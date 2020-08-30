@@ -1,0 +1,15 @@
+{
+  "name": "planetarium-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "James Friend <james@jsdf.co> (http://jsdf.co/)",
+  "license": "ISC",
+  "dependencies": {
+    "get-port": "^5.1.1",
+    "socket.io": "^2.3.0"
+  }
+}
