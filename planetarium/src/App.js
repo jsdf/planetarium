@@ -356,6 +356,10 @@ function ThreeCanvas(props) {
 
   const {windowDimensions, frameCounter, textRef} = props;
 
+  const handleKeyDown = React.useCallback((e) => {
+    // Object.keys(layers)
+  });
+
   React.useEffect(() => {
     if (canvasRef.current == null) {
       return;
@@ -384,6 +388,7 @@ function ThreeCanvas(props) {
       ref={canvasRef}
       width={windowDimensions.width}
       height={windowDimensions.height}
+      onKeyDown={handleKeyDown}
     />
   );
 }

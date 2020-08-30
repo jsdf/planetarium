@@ -77,7 +77,7 @@ async function updateLEDs() {
       }
       await characteristicsMap[peripheral.uuid].updateLED.writeAsync(
         Buffer.from([ledState ? 1 : 0]),
-        true
+        false /*withoutResponse*/
       );
       logging && console.log(peripheral.uuid, 'done updating led');
     })
