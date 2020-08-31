@@ -21,11 +21,16 @@ if (!searchParams.has('port')) {
   window.alert(`'port' url query param required`);
   throw new Error(`'port' url query param required`);
 }
+if (!searchParams.has('host')) {
+  window.alert(`'host' url query param required`);
+  throw new Error(`'host' url query param required`);
+}
 
 const socketPort = parseInt(searchParams.get('port'));
+const serverHost = searchParams.get('host');
 
 function serverURL(path) {
-  return `http://localhost:${socketPort}${path}`;
+  return `http://${serverHost}:${socketPort}${path}`;
 }
 
 const OrbitControls = makeOrbitControls(THREE);
@@ -353,7 +358,7 @@ function noiseWaves(props, canvas) {
     );
     cube.scale.setScalar(scaleToTop(intensity, 0.25));
     cube.material.opacity = scaleToTop(intensity, 0.25);
-    cube.material.wireframe = intensity < 0.7;
+    cube.material.wireframe = intensity < 0.7 || true;
 
     waveObj.position.x += 1;
     waveScroller.update(-waveObj.position.x);
@@ -527,8 +532,9 @@ const flushBLESyncMessage = debounce(() => {
 
   const {api, bpm, startTime} = bleSyncMessage;
 
+  console.log('api.sendCommand blecast', {bpm, startTime});
   api.sendCommand('blecast', {bpm, startTime});
-}, 1000);
+}, 100);
 
 function sendBLESyncMessage(message) {
   bleSyncMessage = message;
@@ -606,7 +612,13 @@ function App() {
     };
     apiRef.current = api;
 
-    sendBLESyncMessage({api, bpm, startTime});
+    socket.on('connect', () => {
+      const clientTime = performance.now();
+      console.log('syncTime', {clientTime});
+      api.sendCommand('syncTime', {clientTime});
+
+      sendBLESyncMessage({api, bpm, startTime});
+    });
   }, []);
 
   // expose server state for debugging
