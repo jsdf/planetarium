@@ -10,6 +10,14 @@ const socketio = require('socket.io');
 const fs = require('fs');
 const path = require('path');
 
+const performanceNow = require('performance-now');
+
+// zero should be fine as performanceNow is relative to start time
+let serverStartupTime = 0;
+// how much the ui is behind (probably) compared to the server
+// add this to any time sent from the ui
+let uiTimeDelta = 0;
+
 const config = {
   port: 13131,
 };
@@ -25,12 +33,23 @@ const server = http.Server(app);
 const io = socketio(server);
 app.use(express.static(uiRoot));
 
+function getBeatPeriod(bpm) {
+  return 60000 / bpm;
+}
+
+function getNextBeatOffset(currentOffset, period) {
+  // quantize to beat, rounding up (ceil), then interpolate back to ms
+  return Math.ceil(currentOffset / period) * period;
+}
+
 class Server {
   // persistent client state
   state = {
     serverErrors: [],
     queryStates: {},
   };
+
+  beatTimer = null;
 
   setState(stateUpdate) {
     console.error('setState', Object.keys(stateUpdate));
@@ -54,10 +73,19 @@ class Server {
       switch (cmd) {
         case 'blecast': {
           const newUUID = this.dataToBleedUUID(data);
+
+          // this.enqueueNextBeatTimer(data)
+
           console.log('blecast', newUUID, data);
           bleedBroadcast.setUUID(newUUID);
+          return;
         }
-        case 'status': {
+        case 'syncTime': {
+          const serverTime = performanceNow();
+          const {clientTime} = data;
+          uiTimeDelta = serverTime - clientTime;
+          console.log('syncTime', {data, uiTimeDelta, serverTime, clientTime});
+          return;
         }
       }
     } catch (err) {
@@ -68,10 +96,35 @@ class Server {
     }
   }
 
+  enqueueNextBeatTimer(data) {
+    if (this.beatTimer) {
+      clearTimeout(this.beatTimer);
+    }
+    const {startTime, bpm} = data;
+    const startTimeServer = startTime + uiTimeDelta;
+    const currentOffset = performanceNow() - startTimeServer;
+    const period = getBeatPeriod(bpm);
+    const nextBeatTime = getNextBeatOffset(currentOffset, period);
+
+    this.beatTimer = setTimeout(() => {
+      console.log('beat', {
+        bpm,
+        period,
+        nextBeatTime,
+        currentOffset,
+        startTimeServer,
+      });
+      this.enqueueNextBeatTimer(data);
+    }, nextBeatTime - currentOffset);
+  }
+
   dataToBleedUUID({startTime, bpm}) {
     const packet = Buffer.alloc(16);
-    // 32 bits gives us 49 days until startTime overflows
-    packet.writeUInt32BE(Math.floor(startTime), /* bytes 0-3 */ 0);
+    // 32 bits signed gives us 24 days until startTime overflows
+    // by adding uiTimeDelta to the startTime (from ui), we provide startTime in server time.
+    // the ble clients can then use their known delta from server time to calculate
+    // client-adjusted startTime value
+    packet.writeInt32BE(Math.floor(startTime + uiTimeDelta), /* bytes 0-3 */ 0);
     // 0-255
     packet.writeUInt8(Math.floor(bpm), /* byte 4 */ 4);
     // 11 bytes remaining
@@ -90,6 +143,11 @@ class Server {
   }
 
   async startServer(httpPort) {
+    bleedBroadcast.setServicesImpl({
+      getServerTime() {
+        return performanceNow();
+      },
+    });
     bleedBroadcast.init();
 
     server.listen(httpPort);

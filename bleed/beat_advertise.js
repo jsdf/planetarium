@@ -2,7 +2,7 @@ const bleno = require('@abandonware/bleno');
 const os = require('os');
 
 // var name = 'dick';
-var name = '';
+var name = 'd';
 var serviceUuid = 'f0000000000000000000000000000000';
 
 function getAdvertisedUUIDs() {
@@ -68,6 +68,40 @@ function init() {
   });
 }
 
+let servicesImpl = null;
+function setServicesImpl(impl) {
+  servicesImpl = impl;
+}
+
+var syncTimeCharacteristic = new bleno.Characteristic({
+  uuid: 'feab', // or 'fff1' for 16-bit
+  properties: ['read'], // can be a combination of 'read', 'write', 'writeWithoutResponse', 'notify', 'indicate'
+
+  onReadRequest: function (offset, callback) {
+    if (!servicesImpl) {
+      throw new Error('servicesImpl not injected yet');
+    }
+    var result = bleno.Characteristic.RESULT_SUCCESS;
+    var data = Buffer.alloc(4);
+    data.writeUInt32LE(servicesImpl.getServerTime());
+    // console.log({result, data})
+    callback(result, data);
+  },
+});
+bleno.on('accept', (clientAddress) => {
+  console.log('accept', clientAddress);
+});
+bleno.on('disconnect', (clientAddress) => {
+  console.log('disconnect', clientAddress);
+});
+
+var primaryService = new bleno.PrimaryService({
+  uuid: 'b0ef', // or 'fff0' for 16-bit
+  characteristics: [syncTimeCharacteristic],
+});
+
+bleno.setServices([primaryService]);
+
 function advertiseTestLoop() {
   setTimeout(() => {
     // gen random uuid
@@ -88,4 +122,4 @@ if (require.main === module) {
   advertiseTestLoop();
 }
 
-module.exports = {init, setUUID};
+module.exports = {init, setUUID, setServicesImpl};

@@ -9,7 +9,9 @@
   "author": "James Friend <james@jsdf.co> (http://jsdf.co/)",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
     "get-port": "^5.1.1",
+    "performance-now": "^2.1.0",
     "socket.io": "^2.3.0"
   }
 }
