@@ -704,7 +704,7 @@ function sendBLESyncMessage(message) {
 }
 
 function App() {
-  const [view, setView] = useLocalStorage('view', 'none');
+  const [view, setView] = useLocalStorage('view', '3d');
   const [bpm, setBPM] = React.useState(120);
   const [startTime, setStartTime] = React.useState(performance.now());
   const [scroll, setScroll] = React.useState(0);
