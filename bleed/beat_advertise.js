@@ -1,9 +1,11 @@
 const bleno = require('@abandonware/bleno');
 const os = require('os');
+const performanceNow = require('performance-now');
 
 // var name = 'dick';
 var name = 'd';
 var serviceUuid = 'f0000000000000000000000000000000';
+var currentDataPacket = Buffer.alloc(16);
 
 function getAdvertisedUUIDs() {
   if (os.platform() == 'darwin') {
@@ -16,44 +18,53 @@ function getAdvertisedUUIDs() {
 let poweredOn = false;
 let advertising = false;
 
-function setUUID(uuid) {
+function setUUID(packet) {
+  const uuid = packet.toString('hex');
   if (uuid.length != 32) {
     throw new Error(`invalid uuid length: ${uuid.length} (${uuid})`);
   }
   serviceUuid = uuid;
+  currentDataPacket = packet;
 
-  if (advertising) {
-    restartAdvertising();
-  }
-}
-
-function restartAdvertising() {
-  advertising = false;
-  if (os.platform() == 'darwin') {
-    bleno.stopAdvertising(() => {});
-    setTimeout(() => {
-      startAdvertising(() => {
-        console.log('now advertising', getAdvertisedUUIDs());
-      });
-    }, 0);
-  } else {
-    bleno.stopAdvertising(() => {
-      startAdvertising(() => {
-        console.log('now advertising', getAdvertisedUUIDs());
-      });
-    });
-  }
-}
-
-function startAdvertising() {
-  advertising = true;
-  bleno.startAdvertising(name, getAdvertisedUUIDs(), (err) => {
-    if (err) {
-      console.error('startAdvertising error:', err, getAdvertisedUUIDs());
-    } else {
-      console.log('startAdvertising', getAdvertisedUUIDs());
-    }
+  restartAdvertising().catch((err) => {
+    console.log('setUUID', uuid, 'error', err);
   });
+}
+
+function blenoStopAdvertisingAsync() {
+  return new Promise((resolve, reject) => {
+    bleno.stopAdvertising((err) => {
+      if (err) reject(err);
+      else resolve();
+    });
+  });
+}
+
+async function restartAdvertising() {
+  try {
+    await blenoStopAdvertisingAsync();
+    advertising = false;
+  } catch (err) {
+    console.error(err);
+    setTimeout(() => restartAdvertising(), 1000);
+  }
+  await startAdvertising();
+}
+
+function blenoStartAdvertisingAsync(name, services) {
+  return new Promise((resolve, reject) => {
+    bleno.startAdvertising(name, services, (err) => {
+      if (err) reject(err);
+      else resolve();
+    });
+  });
+}
+
+async function startAdvertising() {
+  await blenoStartAdvertisingAsync(name, getAdvertisedUUIDs());
+  advertising = true;
+
+  console.log('startAdvertising', getAdvertisedUUIDs());
 }
 
 function init() {
@@ -62,7 +73,9 @@ function init() {
     if (state == 'poweredOn') {
       if (!poweredOn) {
         poweredOn = true;
-        startAdvertising();
+        startAdvertising().catch((err) => {
+          console.error('startAdvertising error:', err, getAdvertisedUUIDs());
+        });
       }
     }
   });
@@ -84,8 +97,22 @@ var syncTimeCharacteristic = new bleno.Characteristic({
     var result = bleno.Characteristic.RESULT_SUCCESS;
     var data = Buffer.alloc(4);
     data.writeUInt32LE(servicesImpl.getServerTime());
-    // console.log({result, data})
+    console.log(syncTimeCharacteristic, {result, data});
     callback(result, data);
+  },
+});
+var readDataCharacteristic = new bleno.Characteristic({
+  uuid: 'feed', // or 'fff1' for 16-bit
+  properties: ['read'], // can be a combination of 'read', 'write', 'writeWithoutResponse', 'notify', 'indicate'
+
+  onReadRequest: function (offset, callback) {
+    if (!servicesImpl) {
+      throw new Error('servicesImpl not injected yet');
+    }
+    var result = bleno.Characteristic.RESULT_SUCCESS;
+    console.log('readDataCharacteristic');
+
+    callback(result, currentDataPacket);
   },
 });
 bleno.on('accept', (clientAddress) => {
@@ -97,7 +124,7 @@ bleno.on('disconnect', (clientAddress) => {
 
 var primaryService = new bleno.PrimaryService({
   uuid: 'b0ef', // or 'fff0' for 16-bit
-  characteristics: [syncTimeCharacteristic],
+  characteristics: [syncTimeCharacteristic, readDataCharacteristic],
 });
 
 bleno.setServices([primaryService]);
@@ -121,5 +148,11 @@ if (require.main === module) {
   init();
   advertiseTestLoop();
 }
+
+setServicesImpl({
+  getServerTime() {
+    return performanceNow();
+  },
+});
 
 module.exports = {init, setUUID, setServicesImpl};

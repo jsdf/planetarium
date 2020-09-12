@@ -13,6 +13,7 @@
     "@abandonware/noble": "^1.9.2-9",
     "@serialport/parser-readline": "^9.0.1",
     "bluetooth-serial-port": "^2.2.7",
+    "p-queue": "^6.6.1",
     "serialport": "^9.0.1"
   }
 }

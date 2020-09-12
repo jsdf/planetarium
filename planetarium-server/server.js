@@ -21,12 +21,18 @@ let uiTimeDelta = 0;
 const config = {
   port: 13131,
 };
+const BLE_BROADCAST = true;
 
-const bleedBroadcast = require('../bleed/beat_advertise');
+let bleedAPI;
+if (BLE_BROADCAST) {
+  bleedAPI = require('../bleed/beat_advertise');
+} else {
+  bleedAPI = require('../bleed/beat_connect');
+}
 
 const DEV = process.env.NODE_ENV === 'development';
 
-const uiRoot = 'dist';
+const uiRoot = 'build';
 
 const app = express();
 const server = http.Server(app);
@@ -72,12 +78,16 @@ class Server {
     try {
       switch (cmd) {
         case 'blecast': {
-          const newUUID = this.dataToBleedUUID(data);
-
           // this.enqueueNextBeatTimer(data)
 
-          console.log('blecast', newUUID, data);
-          bleedBroadcast.setUUID(newUUID);
+          if (BLE_BROADCAST) {
+            const packet = this.dataToPacket(data);
+            console.log('blecast', packet.toString('hex'), data);
+            bleedAPI.setUUID(packet);
+          } else {
+            console.log('blecast', data);
+            bleedAPI.sendPacket(this.dataToPacket(data));
+          }
           return;
         }
         case 'syncTime': {
@@ -118,7 +128,7 @@ class Server {
     }, nextBeatTime - currentOffset);
   }
 
-  dataToBleedUUID({startTime, bpm}) {
+  dataToPacket({startTime, bpm, gradient, energy, attack, release, program}) {
     const packet = Buffer.alloc(16);
     // 32 bits signed gives us 24 days until startTime overflows
     // by adding uiTimeDelta to the startTime (from ui), we provide startTime in server time.
@@ -126,10 +136,36 @@ class Server {
     // client-adjusted startTime value
     packet.writeInt32BE(Math.floor(startTime + uiTimeDelta), /* bytes 0-3 */ 0);
     // 0-255
-    packet.writeUInt8(Math.floor(bpm), /* byte 4 */ 4);
-    // 11 bytes remaining
+    packet.writeUInt8(
+      Math.floor(Math.max(0, Math.min(255, bpm))),
+      /* byte */ 4
+    );
+    packet.writeUInt8(
+      Math.floor(Math.max(0, Math.min(255, gradient))),
+      /* byte */ 5
+    );
+    packet.writeUInt8(
+      Math.floor(Math.max(0, Math.min(255, 255 * (energy / 1000)))),
+      /* byte */ 6
+    );
+    packet.writeUInt8(
+      Math.floor(Math.max(0, Math.min(255, 255 * (attack / 600)))),
+      /* byte */ 7
+    );
+    packet.writeUInt8(
+      Math.floor(Math.max(0, Math.min(255, 255 * (release / 600)))),
+      /* byte */ 8
+    );
+    packet.writeUInt8(
+      Math.floor(Math.max(0, Math.min(255, program))),
+      /* byte */ 9
+    );
+    // 4 bytes remaining
+    return packet;
+  }
 
-    return packet.toString('hex');
+  dataToBleedUUID(data) {
+    return this.dataToPacket(data).toString('hex');
   }
 
   attachClientHandlers(socket) {
@@ -143,12 +179,12 @@ class Server {
   }
 
   async startServer(httpPort) {
-    bleedBroadcast.setServicesImpl({
+    bleedAPI.setServicesImpl({
       getServerTime() {
         return performanceNow();
       },
     });
-    bleedBroadcast.init();
+    bleedAPI.init();
 
     server.listen(httpPort);
 
