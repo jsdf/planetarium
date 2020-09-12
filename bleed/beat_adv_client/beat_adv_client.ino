@@ -3,16 +3,58 @@
 #include <ArduinoBLE.h>
 #include <float.h>
 
-#define LOGGING 1
+#include <utility/GAP.h>
+
+#include <Adafruit_NeoPixel.h>
+
+#include "gradient.h"
+
+#define LOGGING 0
+#define BLE_BROADCAST 1
+
+#define USE_BUILTIN_RGB_LED 0
+#define USE_NEOPIXEL 1
+#define NEOPIXEL_PIN 6  // Pin where NeoPixels are connected
+
+#define PGM_ALTERNATE 2
+#define PGM_RAINBOW 3
+#define PGM_GRADIENT 4
+
+// Declare our NeoPixel strip object:
+Adafruit_NeoPixel strip(64, NEOPIXEL_PIN, NEO_GRB + NEO_KHZ800);
+// Argument 1 = Number of pixels in NeoPixel strip
+// Argument 2 = Arduino pin number (most are valid)
+// Argument 3 = Pixel type flags, add together as needed:
+//   NEO_KHZ800  800 KHz bitstream (most NeoPixel products w/WS2812 LEDs)
+//   NEO_KHZ400  400 KHz (classic 'v1' (not v2) FLORA pixels, WS2811 drivers)
+//   NEO_GRB     Pixels are wired for GRB bitstream (most NeoPixel products)
+//   NEO_RGB     Pixels are wired for RGB bitstream (v1 FLORA pixels, not v2)
+//   NEO_RGBW    Pixels are wired for RGBW bitstream (NeoPixel RGBW products)
+
+typedef struct TimeSync {
+  float client_receive_time;
+  float round_trip_time;
+  float offset;
+} TimeSync;
+
+#define NTP_SAMPLES 30
+
+// when we pack data into the UUID hex string, each index represents 4 bits, so
+// to get the string offset of a particular byte offset we multiply by 2
+#define hexByte(x) x * 2
 
 const int ledPin = LED_BUILTIN;  // pin to use for the LED
-int bpm = 120;
-int startTime = 0;
-int serverTimeDelta = 0;
+int bpm = 20;
+long startTime = 0;
+long serverTimeDelta = 0;
 bool hasServerTimeDelta = false;
-int attack = 1;
-int release = 500;
+int attack = 2000;
+int release = 2000;
+int gradient = 0;
+int energy = 500;
+int program = 0;
 unsigned long ledLastUpdate = 0;
+int deviceIndex = 0;
 
 float frand() {
   return (float)rand() / (float)RAND_MAX;
@@ -22,7 +64,7 @@ int getBeatPeriod(int bpm) {
   return 60000 / bpm;
 }
 
-int getLastBeatOffset(unsigned long currentOffset, int period) {
+long getLastBeatOffset(long currentOffset, int period) {
   // quantize to beat, rounding down (floor), then interpolate back to ms
   return (currentOffset / period) * period;
 }
@@ -40,36 +82,81 @@ float curve(float n, float attack, float release) {
                : easeInCube(1.0f - n / (float)release);
 }
 
-float sampleBeatIntensity(int beatTime, unsigned long currentOffset) {
-  int t = currentOffset - beatTime;
+float sampleBeatIntensity(long beatTime, long currentOffset) {
+  long t = currentOffset - beatTime;
 
   float curveY = curve(t, attack, release);
 
   return fmaxf(0.0f, curveY);
 }
 
-float getIntensity(unsigned long now) {
-  unsigned long currentOffset = (now + serverTimeDelta) - (startTime);
-  int period = getBeatPeriod(bpm);
-  int lastBeat = getLastBeatOffset(currentOffset, period);
-  int nextBeat = lastBeat + period;
+float getIntensity(long currentOffset, long period) {
+  long lastBeat = getLastBeatOffset(currentOffset, period);
+  long nextBeat = lastBeat + period;
 
   return fminf(1.0f, (sampleBeatIntensity(lastBeat, currentOffset) +
                       sampleBeatIntensity(nextBeat, currentOffset)));
 }
+#define NEO_BRIGHTNESS_MAX 100
 
 void setRGBLEDEnabled(bool on) {
-  pinMode(LED_PWR, OUTPUT);
-  digitalWrite(LED_PWR, on ? HIGH : LOW);
+  if (USE_BUILTIN_RGB_LED) {
+    pinMode(LED_PWR, OUTPUT);
+    digitalWrite(LED_PWR, on ? HIGH : LOW);
+  }
+  if (USE_NEOPIXEL) {
+    strip.begin();  // INITIALIZE NeoPixel strip object (REQUIRED)
+    strip.show();   // Turn OFF all pixels ASAP
+    strip.setBrightness(
+        NEO_BRIGHTNESS_MAX);  // Set BRIGHTNESS to about 1/5 (max = 255)
+  }
 }
-void setRGBLEDColor(float red, float green, float blue) {
-  pinMode(LEDR, OUTPUT);
-  analogWrite(LEDR, 255 * (1.0f - red));  // Cathode tied to +3V3
-  pinMode(LEDG, OUTPUT);
-  analogWrite(LEDG, 255 * (1.0f - green));
-  pinMode(LEDB, OUTPUT);
-  analogWrite(LEDB, 255 * (1.0f - blue));
+
+void setRGBLEDColor(float red, float green, float blue, float brightness) {
+  if (USE_BUILTIN_RGB_LED) {
+    pinMode(LEDR, OUTPUT);
+    analogWrite(LEDR, brightness * 255 * (1.0f - red));  // Cathode tied to +3V3
+    pinMode(LEDG, OUTPUT);
+    analogWrite(LEDG, brightness * 255 * (1.0f - green));
+    pinMode(LEDB, OUTPUT);
+    analogWrite(LEDB, brightness * 255 * (1.0f - blue));
+  }
+
+  if (USE_NEOPIXEL) {
+    for (int i = 0; i < strip.numPixels(); i++) {
+      // Set pixel's color (in memory)
+      strip.setPixelColor(i, strip.Color(255 * red, 255 * green, 255 * blue));
+    }
+    strip.setBrightness(NEO_BRIGHTNESS_MAX * brightness);
+    strip.show();  // send update to strip
+  }
 }
+
+const uint8_t PROGMEM gamma8[] = {
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   1,   1,
+    1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   2,   2,   2,   2,
+    2,   2,   2,   2,   3,   3,   3,   3,   3,   3,   3,   4,   4,   4,   4,
+    4,   5,   5,   5,   5,   6,   6,   6,   6,   7,   7,   7,   7,   8,   8,
+    8,   9,   9,   9,   10,  10,  10,  11,  11,  11,  12,  12,  13,  13,  13,
+    14,  14,  15,  15,  16,  16,  17,  17,  18,  18,  19,  19,  20,  20,  21,
+    21,  22,  22,  23,  24,  24,  25,  25,  26,  27,  27,  28,  29,  29,  30,
+    31,  32,  32,  33,  34,  35,  35,  36,  37,  38,  39,  39,  40,  41,  42,
+    43,  44,  45,  46,  47,  48,  49,  50,  50,  51,  52,  54,  55,  56,  57,
+    58,  59,  60,  61,  62,  63,  64,  66,  67,  68,  69,  70,  72,  73,  74,
+    75,  77,  78,  79,  81,  82,  83,  85,  86,  87,  89,  90,  92,  93,  95,
+    96,  98,  99,  101, 102, 104, 105, 107, 109, 110, 112, 114, 115, 117, 119,
+    120, 122, 124, 126, 127, 129, 131, 133, 135, 137, 138, 140, 142, 144, 146,
+    148, 150, 152, 154, 156, 158, 160, 162, 164, 167, 169, 171, 173, 175, 177,
+    180, 182, 184, 186, 189, 191, 193, 196, 198, 200, 203, 205, 208, 210, 213,
+    215, 218, 220, 223, 225, 228, 231, 233, 236, 239, 241, 244, 247, 249, 252,
+    255};
+
+#if BLE_BROADCAST
+#include "ble_broadcast.h"
+#else
+#include "ble_peripheral.h"
+#endif
 
 void setup() {
 #if LOGGING
@@ -79,11 +166,13 @@ void setup() {
 #endif
 
   // set LED pin to output mode
-  pinMode(ledPin, OUTPUT);
+  // pinMode(ledPin, OUTPUT);
 
-  digitalWrite(ledPin, HIGH);  // will turn the LED on
-  delay(500);
-  digitalWrite(ledPin, LOW);  // will turn the LED off
+  // digitalWrite(ledPin, HIGH);  // will turn the LED on
+  // delay(500);
+  // digitalWrite(ledPin, LOW);  // will turn the LED off
+
+  deviceIndex = frand() * 128;
 
   setRGBLEDEnabled(true);
 
@@ -97,136 +186,13 @@ void setup() {
       ;
   }
 
-#if LOGGING
-  Serial.println("BLE Central scan");
-#endif
-
-  // start scanning for peripheral
-  // BLE.scan();
-  BLE.scanForUuid("b0ef", true);
-  // BLE.scanForUuid("B0EF", true);
+  bleSetup();
 
   // init music code
   startTime = millis();
 }
 
-// when we pack data into the UUID hex string, each index represents 4 bits, so
-// to get the string offset of a particular byte offset we multiply by 2
-#define hexByte(x) x * 2
-
-String undashUUID(String& uuid) {
-  String undashed;
-  undashed.reserve(32);
-  for (int i = 0; i < uuid.length(); ++i) {
-    char curr = uuid.charAt(i);
-    if (curr != '-') {
-      undashed += curr;
-    }
-  }
-  return undashed;
-}
-
-typedef struct TimeSync {
-  float client_receive_time;
-  float round_trip_time;
-  float offset;
-} TimeSync;
-
-#define NTP_SAMPLES 30
-
-void syncTime(BLEDevice& peripheral) {
-#if LOGGING
-  Serial.println("Connecting ...");
-#endif
-  if (!peripheral.connect()) {
-#if LOGGING
-    Serial.println("Failed to connect!");
-#endif
-    return;
-  }
-
-#if LOGGING
-  Serial.println("Connected");
-#endif
-
-#if LOGGING
-  Serial.println("Discovering service attributes ...");
-#endif
-  if (peripheral.discoverService("b0ef")) {
-#if LOGGING
-    Serial.println("Service attributes discovered");
-#endif
-  } else {
-#if LOGGING
-    Serial.println("Service attribute discovery failed!");
-#endif
-    peripheral.disconnect();
-    return;
-  }
-
-  BLEService primaryService = peripheral.service("b0ef");
-  // try to use syncTimeCharacterisic
-  BLECharacteristic syncTimeCharacterisic =
-      primaryService.characteristic("feab");
-  // peripheral.characteristic("feab");
-  if (!syncTimeCharacterisic) {
-#if LOGGING
-    Serial.println("Peripheral does NOT have syncTimeCharacterisic");
-#endif
-    peripheral.disconnect();
-    return;
-  }
-
-  TimeSync timeSync[NTP_SAMPLES];
-  for (int i = 0; i < NTP_SAMPLES; ++i) {
-    int32_t serverTime = 0;
-    unsigned long beforeSync = millis();
-    syncTimeCharacterisic.readValue(serverTime);
-    unsigned long afterSync = millis();
-
-    if (serverTime == 0) {
-      timeSync[i].client_receive_time = 0;
-#if LOGGING
-      Serial.printf("error reading time on sync: %d\n", i);
-#endif
-    } else {
-      timeSync[i].client_receive_time = afterSync;
-      timeSync[i].round_trip_time = afterSync - beforeSync;
-      timeSync[i].offset =
-          serverTime - (beforeSync + (timeSync[i].round_trip_time / 2));
-    }
-    delay(10);
-  }
-
-  double offset_total = 0;
-  double rt_total = 0;
-  int missing_samples = 0;
-  double max_rtt = 0;
-  double min_rtt = DBL_MAX;
-
-  for (int i = 0; i < NTP_SAMPLES; i++) {
-    if (timeSync[i].client_receive_time != 0) {
-      offset_total += timeSync[i].offset;
-      rt_total += timeSync[i].round_trip_time;
-      max_rtt = fmax(max_rtt, timeSync[i].round_trip_time);
-      min_rtt = fmin(min_rtt, timeSync[i].round_trip_time);
-    } else {
-      missing_samples++;
-    }
-  }
-  double time_sync_correction = (offset_total / (double)NTP_SAMPLES);
-  double time_sync_round_trip = (rt_total / (double)NTP_SAMPLES);
-
-  // calculate diff between server and local time
-  // which we can use to adjust times received from the server later
-  serverTimeDelta = (int)time_sync_correction;
-#if LOGGING
-  Serial.printf(
-      "time_sync_correction:%f time_sync_round_trip:%f missing_samples:%d\n",
-      time_sync_correction, time_sync_round_trip, missing_samples);
-#endif
-  hasServerTimeDelta = true;
-}
+#define GAMMA_CORR(x) pgm_read_byte(&gamma8[x])
 
 int lastHeartbeat = 0;
 
@@ -243,92 +209,37 @@ void loop() {
 
   now = millis();
   if (ledLastUpdate - now > 16) {
-    float intensity = getIntensity(now) * 0.5f;
+    long currentOffset = (now + serverTimeDelta) - (startTime);
+    int period = getBeatPeriod(bpm);
+    if (program == PGM_ALTERNATE) {
+      // in alternate mode, only pulse for 1/4 beats, determined by device index
+      currentOffset += (deviceIndex % 4) * period;
+      period = getBeatPeriod(bpm / 4);
+    }
+    float intensity = getIntensity(currentOffset, period) * (energy / 1000.0f);
 
 #if LOGGING
     // Serial.printf("intensity: %f\n", intensity);
 #endif
-    setRGBLEDColor(intensity, intensity, intensity);
+
+    switch (program) {
+      case PGM_RAINBOW:
+        rainbowCycle(currentOffset, getBeatPeriod(bpm / 4));
+        break;
+      case PGM_GRADIENT:
+        gradientColor(currentOffset, getBeatPeriod(bpm / 4), intensity);
+        break;
+      default:
+        setRGBLEDColor(GAMMA_CORR((int)(gradients[gradient].from.r)) / 255.0f,
+                       GAMMA_CORR((int)(gradients[gradient].from.g)) / 255.0f,
+                       GAMMA_CORR((int)(gradients[gradient].from.b)) / 255.0f,
+                       intensity);
+    }
     // delay(16);
     ledLastUpdate = now;
   }
 
-  unsigned long startBLE = millis();
-  BLEDevice peripheral = BLE.available();
-  bool isBleedBroadcast = false;
-  String thePacket;
-
-  if (peripheral) {
-#if LOGGING
-    // Serial.print("peripheral:");
-    // Serial.print(peripheral.address());
-    // Serial.println();
-#endif
-    if (peripheral.hasAdvertisedServiceUuid()) {
-#if LOGGING
-      // Serial.print("Service UUIDs: ");
-#endif
-      for (int i = 0; i < (int)peripheral.advertisedServiceUuidCount(); i++) {
-#if LOGGING
-        // Serial.print(peripheral.advertisedServiceUuid(i));
-        // Serial.print(" ");
-#endif
-        if (peripheral.advertisedServiceUuid(i) == "b0ef") {
-          isBleedBroadcast = true;
-        } else {
-          thePacket = peripheral.advertisedServiceUuid(i);
-        }
-      }
-
-      if (isBleedBroadcast && !hasServerTimeDelta) {
-        BLE.stopScan();
-        syncTime(peripheral);
-        BLE.scanForUuid("b0ef", true);
-      }
-
-#if LOGGING
-      // Serial.println();
-#endif
-    }
-    if (isBleedBroadcast) {
-      String advertismentPacket = undashUUID(thePacket);
-      if (advertismentPacket.charAt(0) == 'f') {
-        return;
-      }
-      int newStartTime =
-          strtol(advertismentPacket.substring(hexByte(0), hexByte(4)).c_str(),
-                 NULL, 16);
-      unsigned char newBPM =
-          strtoul(advertismentPacket.substring(hexByte(4), hexByte(5)).c_str(),
-                  NULL, 16);
-
-      unsigned long endBLE = millis();
-
-#if LOGGING
-      if (bpm != newBPM) {
-        Serial.printf("parsed: %s from: %s\n", advertismentPacket.c_str(),
-                      peripheral.address().c_str());
-        Serial.printf("bpm:%u startTime:%d took:%lu\n", newBPM, newStartTime,
-                      endBLE - startBLE);
-      }
-#endif
-      bool updatedValues = false;
-      if (newBPM > 10 && newBPM < 255) {
-        bpm = newBPM;
-        updatedValues = true;
-      }
-      if (startTime != newStartTime) {
-        startTime = newStartTime;
-        updatedValues = true;
-      }
-
-      if (updatedValues) {
-        // dumb shit to make the BLE layer find any new advertisements asap
-        BLE.stopScan();
-        BLE.scanForUuid("b0ef", true);
-      }
-    }
-  }
+  bleLoop();
 }
 
 float lerp(float v0, float v1, float t) {
@@ -336,27 +247,39 @@ float lerp(float v0, float v1, float t) {
 }
 
 // Rainbow cycle along whole strip. Pass delay time (in ms) between frames.
-// void transitionGradient(int wait) {
-//   // Hue of first pixel runs 5 complete loops through the color wheel.
-//   // Color wheel has a range of 65536 but it's OK if we roll over, so
-//   // just count from 0 to 5*65536. Adding 256 to firstPixelHue each time
-//   // means we'll make 5*65536/256 = 1280 passes through this outer loop:
-//   for (long firstPixelHue = 0; firstPixelHue < 5 * 65536;
-//        firstPixelHue += 256) {
-//     for (int i = 0; i < strip.numPixels(); i++) {  // For each pixel in
-//     strip...
-//       // Offset pixel hue by an amount to make one full revolution of the
-//       // color wheel (range of 65536) along the length of the strip
-//       // (strip.numPixels() steps):
-//       int pixelHue = firstPixelHue + (i * 65536L / strip.numPixels());
-//       // strip.ColorHSV() can take 1 or 3 arguments: a hue (0 to 65535) or
-//       // optionally add saturation and value (brightness) (each 0 to 255).
-//       // Here we're using just the single-argument hue variant. The result
-//       // is passed through strip.gamma32() to provide 'truer' colors
-//       // before assigning to each pixel:
-//       strip.setPixelColor(i, strip.gamma32(strip.ColorHSV(pixelHue)));
-//     }
-//     strip.show();  // Update strip with new contents
-//     delay(wait);   // Pause for a moment
-//   }
-// }
+void rainbowCycle(long currentOffset, long period) {
+  // Color wheel has a range of 65536
+  long firstPixelHue = ((currentOffset % period) / (float)period) * 65536;
+  for (int i = 0; i < strip.numPixels(); i++) {  // For each pixel in strip...
+    // Offset pixel hue by an amount to make one full revolution of the
+    // color wheel (range of 65536) along the length of the strip
+    // (strip.numPixels() steps):
+    int pixelHue = firstPixelHue + (i * 65536L / strip.numPixels());
+    // strip.ColorHSV() can take 1 or 3 arguments: a hue (0 to 65535) or
+    // optionally add saturation and value (brightness) (each 0 to 255).
+    // Here we're using just the single-argument hue variant. The result
+    // is passed through strip.gamma32() to provide 'truer' colors
+    // before assigning to each pixel:
+    strip.setPixelColor(i, strip.gamma32(strip.ColorHSV(pixelHue)));
+  }
+  strip.setBrightness(50);
+  strip.show();  // Update strip with new contents
+}
+
+void gradientColor(long currentOffset, long period, float intensity) {
+  float t = ((currentOffset % period) / (float)period);
+  float tCycled = (t > 0.5 ? 1.0 - t : t) * 2.0;
+
+  int red = lerp(gradients[gradient].from.r / 255.0,
+                 gradients[gradient].to.r / 255.0, tCycled) *
+            255;
+  int green = lerp(gradients[gradient].from.g / 255.0,
+                   gradients[gradient].to.g / 255.0, tCycled) *
+              255;
+  int blue = lerp(gradients[gradient].from.b / 255.0,
+                  gradients[gradient].to.b / 255.0, tCycled) *
+             255;
+
+  setRGBLEDColor(GAMMA_CORR(red), GAMMA_CORR(green), GAMMA_CORR(blue),
+                 intensity);
+}

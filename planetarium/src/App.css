@@ -45,7 +45,8 @@ body {
 }
 
 input,
-select {
+select,
+button {
   background: black;
   color: white;
   min-width: 50px;
